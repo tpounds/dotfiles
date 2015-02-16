@@ -1,0 +1,65 @@
+#!/bin/sh
+
+# Copyright (c) 2015 Trevor Pounds <trevor.pounds@gmail.com>
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+sort_column=2 # sort by commits
+case $1 in
+    -c | --commits)       sort_column=2 shift ;;
+    -f | --files-changed) sort_column=3 shift ;;
+    -i | --insertions)    sort_column=4 shift ;;
+    -d | --deletions)     sort_column=5 shift ;;
+    -x | --difference)    sort_column=6 shift ;;
+    -h | --help)
+        echo "git-rank - Rank contributors by commit metrics"
+        echo ""
+        echo "Usage: git rank [<options>] [<revision range>]"
+        echo ""
+        echo "OPTIONS"
+        echo ""
+        echo "   -c, --commits       sort by number of commits (default)"
+        echo "   -f, --files         sort by number of files changed"
+        echo "   -i, --insertions    sort by number of insertions"
+        echo "   -d, --deletions     sort by number of deletions"
+        echo "   -x, --difference    sort by number of insertions - deletions"
+        echo ""
+        echo "   <revision range>    Only include commits in the specified revision range. See gitrevisions(7)."
+        exit 1
+    ;;
+esac
+
+(echo "Author#Commits#Files#Insertions(+)#Deletions(-)#Difference(+/-)"
+ echo "------#-------#-----#-------------#------------#---------------"
+ git log --shortstat --pretty='%aN <%aE>' $@ |
+ awk '/.*@/ {
+         author=$0;
+         commits[author]++;
+     }
+     /[0-9]+ files? changed/ {
+         files[author]   += $1;
+         inserts[author] += $4;
+         deletes[author] += $6;
+     }
+     END {
+         for (a in commits)
+             print a, "#", commits[a], "#", files[a], "#", inserts[a], "#", deletes[a], "#", inserts[a] - deletes[a]
+     }' |
+ sort -t'#' -n -k $sort_column
+) | column -s'#' -t

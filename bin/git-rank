@@ -43,6 +43,11 @@ case $1 in
         echo "   <revision range>    Only include commits in the specified revision range. See gitrevisions(7)."
         exit 1
     ;;
+    -*)
+        echo "Illegal option $1"
+        git-rank -h
+        exit 1
+     ;;
 esac
 
 (echo "Author#Commits#Files#Insertions(+)#Deletions(-)#Difference(+/-)"

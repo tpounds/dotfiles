@@ -30,7 +30,7 @@ case $1 in
     -h | --help)
         echo "git-rank - Rank contributors by commit metrics"
         echo ""
-        echo "Usage: git rank [<options>] [<revision range>]"
+        echo "Usage: git rank [<options>] [<revision range>] [[--] <path>...]"
         echo ""
         echo "OPTIONS"
         echo ""

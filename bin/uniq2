@@ -1,0 +1,57 @@
+#!/bin/sh
+
+while getopts "chi" opt; do
+    case "$opt" in
+        c) opt_print_count=1 ;;
+        i) opt_ignore_case=1 ;;
+        h)
+            echo "Usage: uniq2 [OPTION]..."
+            echo ""
+            echo "A fast, low overhead alternative to 'uniq' that does not require"
+            echo "pre-sorting the input beforehand. The input lines are deduped and"
+            echo "buffered in memory from stdin. The results are emitted unordered"
+            echo "to stdout unless ."
+            echo ""
+            echo "OPTIONS"
+            echo ""
+            echo "   -c   prefix lines by the number of occurrences"
+            echo "   -h   display this help and exit"
+            echo "   -i   ignore differences in case when comparing"
+            echo ""
+            echo "EXAMPLES"
+            echo ""
+            echo "   cat dupes.in | uniq2 > deduped.out"
+            echo ""
+            echo "   cat dupes.in | uniq2 -c > count-dupes.out"
+            echo ""
+            echo "   cat dupes.in | uniq2 | sort > deduped-ordered.out"
+            exit 1
+            ;;
+        \?)
+            uniq2 -h
+            exit 1
+            ;;
+    esac
+done
+
+fn_to_lower=""
+if [ $opt_ignore_case ]; then
+   fn_to_lower="tolower"
+else
+   fn_to_lower=""
+fi
+
+if [ $opt_print_count ]; then
+   fn_print="printf(\"%7s %s\n\", k[i], i);"
+else
+   fn_print="print i"
+fi
+
+awk "{
+        k[$fn_to_lower(\$0)]++
+     }
+     END {
+        for(i in k) {
+           $fn_print
+        }
+     }"

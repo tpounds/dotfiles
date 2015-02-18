@@ -28,18 +28,19 @@
 # TODO: sort options (e.g. date, commits)
 # TODO: -/+ commits
 
-if [[ -n $1 ]]; then
+if [ -n "$1" ]; then
    branches=$1
 else
    branches=`git for-each-ref --format='%(refname)' refs/heads | sed 's/refs\/heads\///'`
 fi
 
-# refresh origin/mainline
-git fetch origin mainline > /dev/null 2>&1
+# TODO: configurable remote (useful when origin is a forked repo.)
+# refresh origin/master
+git fetch origin master > /dev/null 2>&1
 
 for branch in $branches
 do
-   commits=`git log --oneline --pretty='%h' origin/mainline..$branch | wc -l`
+   commits=`git log --oneline --pretty='%h' origin/master..$branch | wc -l`
    date=`git log -1 --date=relative --pretty='%cd' $branch`
    epoch=`git log -1 --format='%at' $branch`
    hash=`git show --stat --date=relative --pretty='%h'  $branch | head -1`

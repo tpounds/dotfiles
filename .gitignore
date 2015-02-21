@@ -18,6 +18,18 @@
 *.txz
 *.zip
 
+# ignore documents
+*.doc
+*.docx
+*.odp
+*.ods
+*.odt
+*.pdf
+*.ppt
+*.pptx
+*.xls
+*.xlsx
+
 # ignore images
 *.bmp
 *.gif

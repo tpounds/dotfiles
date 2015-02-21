@@ -37,6 +37,12 @@
 *.png
 *.xcf
 
+# ignore perforce since I live in the stone age.
+# see: http://sadtrombone.com/?play=true
+.gitp4-usercache.txt
+.p4enviro
+.p4tickets
+
 # ignore vim
 *.swo
 *.swp

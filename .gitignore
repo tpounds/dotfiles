@@ -17,3 +17,10 @@
 *.tar.xz
 *.txz
 *.zip
+
+# ignore images
+*.bmp
+*.gif
+*.jpg
+*.png
+*.xcf

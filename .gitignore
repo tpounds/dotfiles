@@ -2,6 +2,7 @@
 .Private*
 
 # ignore archives
+*.jar
 *.rar
 *.tar
 *.tar.bz2

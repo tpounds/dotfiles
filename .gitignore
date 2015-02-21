@@ -38,5 +38,5 @@
 *.xcf
 
 # ignore zsh
-.zshcompdump
+.zcompdump
 .zsh*history

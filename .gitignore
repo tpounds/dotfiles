@@ -37,6 +37,10 @@
 *.png
 *.xcf
 
+# ignore vim
+*.swo
+*.swp
+
 # ignore zsh
 .zcompdump
 .zsh*history

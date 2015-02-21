@@ -36,3 +36,7 @@
 *.jpg
 *.png
 *.xcf
+
+# ignore zsh
+.zshcompdump
+.zsh*history

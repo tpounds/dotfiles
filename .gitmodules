@@ -7,6 +7,9 @@
 [submodule ".vim/bundle/vim-gitgutter"]
 	path = .vim/bundle/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter.git
+[submodule ".vim/bundle/vim-pathogen"]
+	path = .vim/bundle/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen.git
 [submodule ".vim/bundle/Zenburn"]
 	path = .vim/bundle/Zenburn
 	url = https://github.com/jnurmine/Zenburn.git

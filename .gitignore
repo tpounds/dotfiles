@@ -46,6 +46,7 @@
 # ignore vim
 *.swo
 *.swp
+*.viminfo
 
 # ignore zsh
 .zcompdump

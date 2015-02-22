@@ -1,0 +1,25 @@
+rxvt*transparent: true
+rxvt*scrollBar: false
+rxvt*shading: 10
+rxvt*font: xft:Droid Sans Mono Dotted:pixelsize=11:antialias=true:hinting=true
+rxvt*fading: 70
+
+! zenburn color scheme
+rxvt*background: #3F3F3F
+rxvt.foreground: #DCDCCC
+rxvt*color0:     #3F3F3F
+rxvt*color1:     #705050
+rxvt*color2:     #60B48A
+rxvt*color3:     #DFAF8F
+rxvt*color4:     #506070
+rxvt*color5:     #DC8CC3
+rxvt*color6:     #8CD0D3
+rxvt*color7:     #DCDCCC
+rxvt*color8:     #709080
+rxvt*color9:     #CC9393
+rxvt*color10:    #7F9F7F
+rxvt*color11:    #F0DFAF
+rxvt*color12:    #94BFF3
+rxvt*color13:    #EC93D3
+rxvt*color14:    #93E0E3
+rxvt*color15:    #FFFFFF

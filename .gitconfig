@@ -2,8 +2,8 @@
    # Replace HEAD with a new commit that includes both existing and currently staged changes.
    amend = commit --amend
 
-   # Pretty-printed log with DAG (see: https://coderwall.com/p/euwpig/a-better-git-log)
-   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an %aE>%Creset' --abbrev-commit
+   # Pretty-print log with DAG (see: https://coderwall.com/p/euwpig/a-better-git-log)
+   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an <%aE>%Creset' --abbrev-commit
 
    # Undo the last commit and keep changes in working directory
    undo = reset --mixed HEAD~1

@@ -2,7 +2,7 @@ runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
 color zenburn
-" let g:zenburn_high_Contrast = 1
+let g:zenburn_high_Contrast = 1
 
 "color solarized
 let g:solarized_visibility = "high"

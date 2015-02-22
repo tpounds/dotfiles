@@ -37,6 +37,18 @@
 *.png
 *.xcf
 
+# ignore media
+*.avi
+*.flac
+*.flv
+*.m4a
+*.mkv
+*.mov
+*.mp3
+*.mp4
+*.ogg
+*.wav
+
 # ignore perforce since I live in the stone age.
 # see: http://sadtrombone.com/?play=true
 .gitp4-usercache.txt

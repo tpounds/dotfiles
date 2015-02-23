@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# Copyright (c) 2015 Trevor Pounds <trevor.pounds@gmail.com>
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+pid=$1
+
+ps_out=`ps -o user,args --no-header $pid`
+if [ -z "$ps_out" ]; then
+   echo "No process with PID $pid exists."
+   exit 1
+fi
+
+pid_user=`echo $ps_out | awk '{ print $1; }'`
+pid_args=`echo $ps_out | awk '{ $1=""; print $0; }'`
+
+user=`id -nu`
+if [ "$pid_user" != "$user" ]; then
+   sudo kill $1
+   sudo -u $pid_user $pid_args
+else
+   kill $1
+   $pid_args
+fi

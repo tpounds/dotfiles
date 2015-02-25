@@ -61,5 +61,8 @@ if [ -x /usr/bin/dircolors ]; then
     #alias egrep='egrep --color=auto'
 fi
 
+# enable context aware ignore case search
+alias less='less -i'
+
 # source ,private zshrc
 for rc in `ls -a .private*/.zshrc`; do source $rc; done

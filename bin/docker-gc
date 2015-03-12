@@ -46,12 +46,16 @@ help() {
 
 containers() {
    old_containers=$(docker ps -a | grep Exited | grep -v "\(second\|minute\|hour\)s\? ago" | awk '{ print $1 }')
-   docker rm $old_containers
+   if [ -n "$old_containers" ]; then
+      docker rm -v $old_containers
+   fi
 }
 
 images() {
    unused_images=$(docker images -q -f dangling=true)
-   docker rmi $unused_images
+   if [ -n "$unused_images" ]; then
+      docker rmi $unused_images
+   fi
 }
 
 nuke() {

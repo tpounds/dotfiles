@@ -20,6 +20,13 @@
 *.war
 *.zip
 
+# ignore binaries
+*.bin
+*.dll
+*.exe
+a.out
+*.so*
+
 # ignore documents
 *.doc
 *.docx

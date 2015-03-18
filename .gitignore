@@ -2,6 +2,7 @@
 .Private*
 
 # ignore archives
+*.ear
 *.jar
 *.rar
 *.tar
@@ -16,6 +17,7 @@
 *.tlz
 *.tar.xz
 *.txz
+*.war
 *.zip
 
 # ignore documents

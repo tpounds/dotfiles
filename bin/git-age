@@ -29,6 +29,8 @@
 #       e.g. git age [<branchname>...] [<repository> <refspec>]...
 # TODO: sort options (e.g. date, commits)
 # TODO: -/+ commits
+# TODO: Calculate age based on remote tracking branch
+#       defaulting to origin/master if one is not present.
 
 if [ -n "$1" ]; then
    branches=$1

@@ -48,14 +48,14 @@ help() {
 containers() {
    old_containers=$(docker ps -a | grep Exited | grep -v "\(second\|minute\|hour\)s\? ago" | awk '{ print $1 }')
    if [ -n "$old_containers" ]; then
-      docker rm -v $old_containers
+      docker rm -v $old_containers | awk '{ printf "Deleted container: %s\n", $1 }'
    fi
 }
 
 images() {
    unused_images=$(docker images -q -f dangling=true)
    if [ -n "$unused_images" ]; then
-      docker rmi $unused_images
+      docker rmi $unused_images 2> /dev/null | awk '/Deleted:/ { printf "Deleted image: %s\n", $2 }'
    fi
 }
 
@@ -69,9 +69,9 @@ volumes() {
    all_containers=$(docker ps -a -a --no-trunc=true | sort)
    orphaned_volumes=$(comm -23 <(echo "$all_volumes") <(echo "$all_containers"))
    for v in $orphaned_volumes; do
-      echo "$v"
       sudo rm -rf /var/lib/docker/volumes/$v
       sudo rm -rf /var/lib/docker/vfs/dir/$v
+      echo "Deleted volume: $v"
    done
 }
 

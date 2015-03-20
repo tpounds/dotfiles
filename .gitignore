@@ -70,5 +70,5 @@ a.out
 *.viminfo
 
 # ignore zsh
-.zcompdump
+.zcompdump*
 .zsh*history

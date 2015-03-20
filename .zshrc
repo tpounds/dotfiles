@@ -31,6 +31,9 @@ precmd() {
 PROMPT='%F{green}%n%f@%F{cyan}%m%f:%F{yellow}%10~%f$ '
 RPROMPT='$vcs_info_msg_0_'
 
+# enable brace character class e.g. {a-z}
+setopt BRACE_CCL
+
 # configure history
 HISTFILE=~/.zsh/history
 HISTSIZE=1000

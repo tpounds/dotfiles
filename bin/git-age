@@ -35,7 +35,7 @@
 if [ -n "$1" ]; then
    branches=$1
 else
-   branches=`git for-each-ref --format='%(refname)' refs/heads | sed 's/refs\/heads\///'`
+   branches=$(git for-each-ref --format='%(refname)' refs/heads | sed 's/refs\/heads\///')
 fi
 
 # refresh origin/master
@@ -43,9 +43,9 @@ git fetch origin master > /dev/null 2>&1
 
 for branch in $branches
 do
-   commits=`git log --oneline --pretty='%h' origin/master..$branch | wc -l`
-   date=`git log -1 --date=relative --pretty='%cd' $branch`
-   epoch=`git log -1 --format='%at' $branch`
-   hash=`git show --stat --date=relative --pretty='%h'  $branch | head -1`
+   commits=$(git log --oneline --pretty='%h' origin/master..$branch | wc -l)
+   date=$(git log -1 --date=relative --pretty='%cd' $branch)
+   epoch=$(git log -1 --format='%at' $branch)
+   hash=$(git show --stat --date=relative --pretty='%h'  $branch | head -1)
    echo "$epoch#$branch@$hash#$commits#commits#($date)"
 done | column -s'#' -t | sort -r -n | cut -d' ' -f3-

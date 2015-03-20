@@ -22,16 +22,16 @@
 
 pid=$1
 
-ps_out=`ps -o user,args --no-header $pid`
+ps_out=$(ps -o user,args --no-header $pid)
 if [ -z "$ps_out" ]; then
    echo "No process with PID $pid exists."
    exit 1
 fi
 
-pid_user=`echo $ps_out | awk '{ print $1; }'`
-pid_args=`echo $ps_out | awk '{ $1=""; print $0; }'`
+pid_user=$(echo $ps_out | awk '{ print $1; }')
+pid_args=$(echo $ps_out | awk '{ $1=""; print $0; }')
 
-user=`id -nu`
+user=$(id -nu)
 if [ "$pid_user" != "$user" ]; then
    sudo kill $1
    sudo -u $pid_user $pid_args

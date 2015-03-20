@@ -64,5 +64,8 @@ fi
 # enable context aware ignore case search
 alias less='less -i'
 
+# default to opening multiple files in tabs
+alias vim='vim -p'
+
 # source ,private zshrc
 for rc in `ls -a .private*/.zshrc`; do source $rc; done

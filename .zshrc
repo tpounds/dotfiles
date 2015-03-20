@@ -68,6 +68,7 @@ fi
 alias less='less -i'
 
 # default to opening multiple files in tabs
+alias vi='vim -p'
 alias vim='vim -p'
 
 # source ,private zshrc

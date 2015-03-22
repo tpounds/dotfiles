@@ -20,10 +20,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-## git-age: script to age of local branches
+#
+# git-age: script to get age of local branches relative to origin/master
 #
 # foo@a37dea78  1 commits (today)
 # bar@123bc5b3 35 commits (18 weeks ago)
+#
 
 # TODO: add support for multiple branch names and repository/refspec pairs.
 #       e.g. git age [<branchname>...] [<repository> <refspec>]...

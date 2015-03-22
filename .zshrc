@@ -71,5 +71,5 @@ alias less='less -i'
 alias vi='vim -p'
 alias vim='vim -p'
 
-# source ,private zshrc
-for rc in `ls -a .private*/.zshrc`; do source $rc; done
+# source private .zshrc
+for rc in $(ls -a ~/.private*/.zshrc); do source $rc; done

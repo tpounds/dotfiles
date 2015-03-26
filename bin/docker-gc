@@ -46,7 +46,7 @@ help() {
 }
 
 containers() {
-   old_containers=$(docker ps -a | grep Exited | grep -v "\(second\|minute\|hour\)s\? ago" | awk '{ print $1 }')
+   old_containers=$(docker ps --filter "status=exited" | grep -v "\(second\|minute\|hour\)s\? ago" | awk '{ print $1 }')
    if [ -n "$old_containers" ]; then
       docker rm -v $old_containers | awk '{ printf "Deleted container: %s\n", $1 }'
    fi

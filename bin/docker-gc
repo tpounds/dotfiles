@@ -39,7 +39,7 @@ help() {
    echo "    all           clean up all artifacts"
    echo "    containers    clean up containers"
    echo "    images        clean up images"
-   echo "    nuke          blow away all artifacts"
+   echo "    nuke          the only winning move is not to play"
    echo "    volumes       clean up volumes"
    echo ""
    echo "Run 'docker-gc help COMMAND' for more information on a command."
@@ -59,11 +59,6 @@ images() {
    fi
 }
 
-nuke() {
-   # TODO: destroy the world
-   echo -n
-}
-
 volumes() {
    all_volumes=$(sudo ls -1 /var/lib/docker/volumes | sort)
    all_containers=$(docker ps -a -a --no-trunc=true | sort)
@@ -73,6 +68,13 @@ volumes() {
       sudo rm -rf /var/lib/docker/vfs/dir/$v
       echo "Deleted volume: $v"
    done
+}
+
+nuke() {
+   # TODO: destroy the world
+   docker rm -f -v | awk '{ printf "Deleted container: %s\n", $1 }'
+   docker rmi -f 2> /dev/null | awk '/Deleted:/ { printf "Deleted image: %s\n", $2 }'
+   volumes
 }
 
 case "$1" in 

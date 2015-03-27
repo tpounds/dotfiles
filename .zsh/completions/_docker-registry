@@ -1,0 +1,18 @@
+#compdef docker-registry
+
+_docker-registry() {
+   local -a commands
+   commands=(
+         'help:show help'
+         'list:list all images'
+         'tags:list all image tags'
+   )
+
+   if (( CURRENT == 2 )); then
+      _describe -t commands 'commands' commands
+   fi
+
+   return 0
+}
+
+_docker-registry

@@ -1,0 +1,20 @@
+#compdef git-rank
+
+_git-rank() {
+   local -a options
+   options=(
+         '-c:sort by number of commits (default)'
+         '-f:sort by number of files changed'
+         '-i:sort by number of insertions'
+         '-d:sort by number of deletions'
+         '-x:sort by number of insertions - deletions'
+   )
+
+   if (( CURRENT == 2 )); then
+      _describe 'values' options
+   fi
+
+   return 0
+}
+
+_git-rank

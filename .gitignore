@@ -58,6 +58,12 @@ a.out
 *.ogg
 *.wav
 
+# ignore local build artifact repos
+.gradle
+.grails
+.ivy2
+.m2
+
 # ignore perforce since I live in the stone age.
 # see: http://sadtrombone.com/?play=true
 .gitp4-usercache.txt

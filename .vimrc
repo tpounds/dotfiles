@@ -30,8 +30,8 @@ set showtabline=2
 
 set showcmd
 set nobackup
-" set nowritebackup
-" set noswapfile
+set nowritebackup
+set noswapfile
 
 set hlsearch
 set incsearch

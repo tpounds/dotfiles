@@ -31,8 +31,6 @@
 #       e.g. git age [<branchname>...] [<repository> <refspec>]...
 # TODO: sort options (e.g. date, commits)
 # TODO: -/+ commits
-# TODO: Calculate age based on remote tracking branch
-#       defaulting to origin/master if one is not present.
 
 if [ -n "$1" ]; then
    branches=$1
@@ -40,12 +38,10 @@ else
    branches=$(git for-each-ref --format='%(refname)' refs/heads | sed 's/refs\/heads\///')
 fi
 
-# refresh origin/master
-git fetch origin master > /dev/null 2>&1
-
 for branch in $branches
 do
-   commits=$(git log --oneline --pretty='%h' origin/master..$branch | wc -l)
+   mergebase=$(git merge-base master $branch)
+   commits=$(git log --oneline --pretty='%h' $mergebase..$branch | wc -l)
    date=$(git log -1 --date=relative --pretty='%cd' $branch)
    epoch=$(git log -1 --format='%at' $branch)
    hash=$(git show --stat --date=relative --pretty='%h'  $branch | head -1)

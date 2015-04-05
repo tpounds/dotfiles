@@ -42,8 +42,11 @@ a.out
 # ignore images
 *.bmp
 *.gif
+*.jpeg
 *.jpg
 *.png
+*.tif
+*.tiff
 *.xcf
 
 # ignore media

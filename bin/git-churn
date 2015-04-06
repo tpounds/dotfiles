@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# Written by Corey Haines
+# https://gist.github.com/coreyhaines/829932
+#
+# Scriptified by Gary Bernhardt
+# https://github.com/garybernhardt/dotfiles/blob/bin/git-churn
+#
+# Modified by Trevor Pounds
+# https://github.com/tpounds/dotfiles/blob/bin/git-churn
+#
+# Put this anywhere on your $PATH (~/bin is recommended). Then git will see it
+# and you'll be able to do `git churn`.
+#
+# Show churn for whole repo:
+#   $ git churn
+#
+# Show churn for specific directories:
+#   $ git churn app lib
+#
+# Show churn for a time range:
+#   $ git churn --since='1 month ago'
+#
+# (These are all standard arguments to `git log`.)
+
+git log --all --find-copies --find-renames --name-only --format='' "$@" | sort | uniq -c | sort -n

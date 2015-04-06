@@ -20,4 +20,4 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-git status --short | awk '/??/ { print $2 }'
+git status --short | awk '/^\?\?/ { print $2 }'

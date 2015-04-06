@@ -1,0 +1,2 @@
+# Suppress MOTD, license, disclaimers, and login nonsense.
+# See `man login` for more information.

@@ -5,6 +5,10 @@
    # Pretty-print log with DAG (see: https://coderwall.com/p/euwpig/a-better-git-log)
    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an <%aE>%Creset' --abbrev-commit
 
+   # Show pending changes
+   staged   = diff --cached
+   unstaged = diff
+
    # Undo the last commit and keep changes in working directory
    undo = reset --mixed HEAD~1
 [push]

@@ -3,6 +3,7 @@
 _docker-registry() {
    local -a commands
    commands=(
+         'delete:delete an image tag'
          'help:show help'
          'list:list all images'
          'tags:list all image tags'

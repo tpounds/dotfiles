@@ -27,11 +27,19 @@ help() {
    echo ""
    echo "Commands:"
    echo ""
-   echo "    help          show help and usage"
+   echo "    delete        delete an image tag"
+   echo "    help          show helpkand usage"
    echo "    list          list all repo images"
    echo "    tags          list image tags"
    echo ""
    echo "Run 'docker-registry help COMMAND' for more information on a command."
+}
+
+delete() {
+   REPO=$(echo $1 | cut -d/ -f1)
+   NAME=$(echo $1 | cut -d/ -f2- | cut -d: -f1)
+   TAG=$(echo $1  | cut -d: -f2)
+   curl -s -X DELETE https://$REPO/v1/repositories/$NAME/tags/$TAG
 }
 
 list() {
@@ -45,6 +53,9 @@ tags() {
 }
 
 case "$1" in
+   delete)
+      delete $2
+      ;;
    list)
       list $2
       ;;

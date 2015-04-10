@@ -16,7 +16,6 @@ set nowrap
 set number
 set expandtab
 set tabstop=3
-set nobackup
 set shiftwidth=3
 
 set showtabline=2

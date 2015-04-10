@@ -19,13 +19,6 @@ set tabstop=3
 set nobackup
 set shiftwidth=3
 
-set nocindent
-set nosmartindent
-set noautoindent
-filetype indent off
-filetype plugin indent off
-filetype plugin on
-
 set showtabline=2
 
 set showcmd

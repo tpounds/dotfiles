@@ -37,6 +37,9 @@
 [submodule ".vim/bundle/syntastic"]
 	path = .vim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule ".vim/bundle/vim-terraform"]
+	path = .vim/bundle/vim-terraform
+	url = https://github.com/markcornick/vim-terraform.git
 [submodule ".vim/bundle/Zenburn"]
 	path = .vim/bundle/Zenburn
 	url = https://github.com/jnurmine/Zenburn.git

@@ -64,8 +64,8 @@ if [ -x /usr/bin/dircolors ]; then
     #alias egrep='egrep --color=auto'
 fi
 
-# enable context aware ignore case search
-alias less='less -i'
+# enable context aware ignore case search and colorize output
+alias less='less -i -r'
 
 # default to opening multiple files in tabs
 alias vi='vim -p'

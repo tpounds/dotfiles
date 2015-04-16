@@ -77,6 +77,9 @@ a.out
 *.swo
 *.swp
 *.viminfo
+.vim/backups
+.vim/swaps
+.vim/undo
 
 # ignore zsh
 .zcompdump*

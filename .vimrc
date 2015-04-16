@@ -21,9 +21,10 @@ set shiftwidth=3
 set showtabline=2
 
 set showcmd
-set nobackup
-set nowritebackup
-set noswapfile
+
+set backupdir=~/.vim/backups
+set directory=~/.vim/swaps
+set undodir=~/.vim/undo
 
 set hlsearch
 set incsearch

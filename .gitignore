@@ -45,6 +45,8 @@ a.out
 *.jpeg
 *.jpg
 *.png
+*.svg
+*.svgz
 *.tif
 *.tiff
 *.xcf

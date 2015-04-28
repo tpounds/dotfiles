@@ -28,7 +28,7 @@ help() {
    echo "Commands:"
    echo ""
    echo "    delete        delete an image tag"
-   echo "    help          show helpkand usage"
+   echo "    help          show help and usage"
    echo "    list          list all repo images"
    echo "    tags          list image tags"
    echo ""

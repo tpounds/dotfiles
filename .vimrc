@@ -4,12 +4,6 @@ execute pathogen#infect()
 color zenburn
 let g:zenburn_high_Contrast = 1
 
-"color solarized
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
-let g:solarized_termcolors = 256
-let g:solarized_termtrans = 1
-
 syntax on
 
 set nowrap

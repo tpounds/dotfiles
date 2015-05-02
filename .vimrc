@@ -31,9 +31,6 @@ set errorbells
 
 set guifont=Droid\ Sans\ Mono\ Slashed
 
-set omnifunc=syntaxcomplete#Complete
-set ofu=syntaxcomplete#Complete
-
 " disable arrow keys
 map <up> <nop>
 map <down> <nop>

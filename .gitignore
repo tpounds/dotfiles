@@ -85,4 +85,4 @@ a.out
 
 # ignore zsh
 .zcompdump*
-.zsh*history
+.zsh/history

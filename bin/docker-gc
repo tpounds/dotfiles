@@ -61,7 +61,7 @@ images() {
 
 volumes() {
    all_volumes=$(sudo ls -1 /var/lib/docker/volumes | sort)
-   all_containers=$(docker ps -a -a --no-trunc=true | sort)
+   all_containers=$(docker ps -a --no-trunc=true | sort)
    orphaned_volumes=$(comm -23 <(echo "$all_volumes") <(echo "$all_containers"))
    for v in $orphaned_volumes; do
       sudo rm -rf /var/lib/docker/volumes/$v

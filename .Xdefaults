@@ -6,7 +6,7 @@ rxvt*fading: 70
 
 ! zenburn color scheme
 rxvt*background: #3F3F3F
-rxvt.foreground: #DCDCCC
+rxvt*foreground: #DCDCCC
 rxvt*color0:     #3F3F3F
 rxvt*color1:     #705050
 rxvt*color2:     #60B48A

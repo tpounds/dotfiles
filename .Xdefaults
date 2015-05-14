@@ -1,6 +1,6 @@
 rxvt*transparent: true
 rxvt*scrollBar: false
-rxvt*shading: 10
+rxvt*shading: 30
 rxvt*font: xft:Droid Sans Mono Dotted:pixelsize=11:antialias=true:hinting=true
 rxvt*fading: 70
 

@@ -29,7 +29,7 @@ help() {
    echo ""
    echo "    delete        delete an image tag"
    echo "    help          show help and usage"
-   echo "    list          list all repo images"
+   echo "    images        list all repo images"
    echo "    tags          list image tags"
    echo ""
    echo "Run 'docker-registry help COMMAND' for more information on a command."
@@ -42,7 +42,7 @@ delete() {
    curl -s -X DELETE https://$REPO/v1/repositories/$NAME/tags/$TAG
 }
 
-list() {
+images() {
    curl -s https://$1/v1/search | jq --raw-output '.results[].name' | sort -n
 }
 
@@ -56,8 +56,8 @@ case "$1" in
    delete)
       delete $2
       ;;
-   list)
-      list $2
+   images)
+      images $2
       ;;
    tags)
       tags $2

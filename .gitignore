@@ -3,6 +3,7 @@
 
 # ignore archives
 *.ear
+*.iso
 *.jar
 *.rar
 *.tar

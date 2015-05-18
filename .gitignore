@@ -64,7 +64,7 @@ a.out
 *.ogg
 *.wav
 
-# ignore local build artifact repos
+# ignore artifact repos
 .gradle
 .grails
 .ivy2

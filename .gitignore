@@ -70,6 +70,9 @@ a.out
 .ivy2
 .m2
 
+# ignore installed RubyGems
+.gem
+
 # ignore perforce since I live in the stone age.
 # see: http://sadtrombone.com/?play=true
 .gitp4-usercache.txt

@@ -73,6 +73,9 @@ a.out
 # ignore installed RubyGems
 .gem
 
+# ignore SSH
+.ssh
+
 # ignore perforce since I live in the stone age.
 # see: http://sadtrombone.com/?play=true
 .gitp4-usercache.txt

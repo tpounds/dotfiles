@@ -65,13 +65,11 @@ a.out
 *.wav
 
 # ignore artifact repos
+.gem
 .gradle
 .grails
 .ivy2
 .m2
-
-# ignore installed RubyGems
-.gem
 
 # ignore SSH
 .ssh

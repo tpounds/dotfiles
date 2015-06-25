@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo "Filesystem Diff"
+echo "---------------"
+diff --suppress-common-lines -y \
+   <(docker save $1 | tar --to-command='tar tf -' --wildcards '*.tar' -x | sort) \
+   <(docker save $2 | tar --to-command='tar tf -' --wildcards '*.tar' -x | sort)
+echo
+
+echo "History Diff"
+echo "------------"
+diff -y \
+   <(docker history $1) \
+   <(docker history $2) | tail -n +2
+echo
+
+echo "Inspect Diff"
+echo "------------"
+diff -y \
+   <(docker inspect $1) \
+   <(docker inspect $2)
+echo

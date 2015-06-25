@@ -71,9 +71,12 @@ volumes() {
 }
 
 nuke() {
-   # TODO: destroy the world
-   docker rm -f -v | awk '{ printf "Deleted container: %s\n", $1 }'
-   docker rmi -f 2> /dev/null | awk '/Deleted:/ { printf "Deleted image: %s\n", $2 }'
+   all_containers=$(docker ps -a -q)
+   docker rm -f -v $all_containers | awk '{ printf "Deleted container: %s\n", $1 }'
+
+   all_images=$(docker images -a -q)
+   docker rmi -f $all_images 2> /dev/null | awk '/Deleted:/ { printf "Deleted image: %s\n", $2 }'
+
    volumes
 }
 

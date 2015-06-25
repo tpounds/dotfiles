@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# TODO: add help text
+# TODO: support filesystem content diffs
+
 echo "Filesystem Diff"
 echo "---------------"
 diff --suppress-common-lines -y \

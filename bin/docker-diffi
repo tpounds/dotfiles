@@ -2,6 +2,7 @@
 
 # TODO: add help text
 # TODO: support filesystem content diffs
+# TODO: diff image layers in-order
 
 echo "Filesystem Diff"
 echo "---------------"

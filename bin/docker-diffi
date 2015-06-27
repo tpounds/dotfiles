@@ -7,8 +7,8 @@
 echo "Filesystem Diff"
 echo "---------------"
 diff --suppress-common-lines -y \
-   <(docker save $1 | tar --to-command='tar tf -' --wildcards '*.tar' -x | sort) \
-   <(docker save $2 | tar --to-command='tar tf -' --wildcards '*.tar' -x | sort)
+   <(docker save $1 | tar --to-command='tar tf -' --wildcards '*.tar' -x | sort -u) \
+   <(docker save $2 | tar --to-command='tar tf -' --wildcards '*.tar' -x | sort -u)
 echo
 
 echo "History Diff"

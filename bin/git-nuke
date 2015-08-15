@@ -1,4 +1,9 @@
 #!/bin/sh
 
-git reset --hard origin/master
-git clean -d -f
+read -r -p "Discard all non-upstream changes? [y/N] " yes_no
+case $yes_no in
+    [yY])
+       git reset --hard origin/master
+       git clean -d -f
+    ;;
+esac

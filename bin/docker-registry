@@ -40,9 +40,19 @@ delete() {
    NAME=$(echo $1 | cut -d/ -f2- | cut -d: -f1)
    TAG=$(echo $1  | cut -d: -f2)
    if [ -z "$TAG" ]; then
-      curl -s -X DELETE https://$REPO/v1/repositories/$NAME/tags/$TAG
+      read -r -p "Delete tagged image $1? [y/N] " yes_no
+      case $yes_no in
+          [yY])
+             curl -s -X DELETE https://$REPO/v1/repositories/$NAME/tags/$TAG
+          ;;
+      esac
    else
-      curl -s -X DELETE https://$REPO/v1/repositories/$NAME/
+      read -r -p "Delete all tagged images $1? [y/N] " yes_no
+      case $yes_no in
+          [yY])
+             curl -s -X DELETE https://$REPO/v1/repositories/$NAME/
+          ;;
+      esac
    fi
 }
 

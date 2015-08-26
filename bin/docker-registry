@@ -39,7 +39,11 @@ delete() {
    REPO=$(echo $1 | cut -d/ -f1)
    NAME=$(echo $1 | cut -d/ -f2- | cut -d: -f1)
    TAG=$(echo $1  | cut -d: -f2)
-   curl -s -X DELETE https://$REPO/v1/repositories/$NAME/tags/$TAG
+   if [ -z "$TAG" ]; then
+      curl -s -X DELETE https://$REPO/v1/repositories/$NAME/tags/$TAG
+   else
+      curl -s -X DELETE https://$REPO/v1/repositories/$NAME/
+   fi
 }
 
 images() {

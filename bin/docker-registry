@@ -57,7 +57,9 @@ delete() {
 }
 
 images() {
-   curl -s https://$1/v1/search | jq --raw-output '.results[].name' | sort -n
+   REPO=$(echo $1 | cut -d/ -f1)
+   QUERY=$2
+   curl -s "https://$REPO/v1/search?q=$QUERY" | jq --raw-output '.results[].name' | sort -n
 }
 
 tags() {
@@ -71,7 +73,7 @@ case "$1" in
       delete $2
       ;;
    images)
-      images $2
+      images $2 $3
       ;;
    tags)
       tags $2

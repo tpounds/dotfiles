@@ -82,9 +82,14 @@ nuke() {
 
 case "$1" in 
    all)
-      containers
-      images
-      volumes
+      read -r -p "Cleanup all eligible containers, images, and volumes? [y/N] " yes_no
+      case $yes_no in
+         [yY])
+            containers
+            images
+            volumes
+            ;;
+      esac
       ;;
    containers)
       containers

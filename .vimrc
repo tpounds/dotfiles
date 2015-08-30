@@ -29,8 +29,6 @@ set smartcase
 set visualbell t_vb=
 set errorbells
 
-set guifont=Droid\ Sans\ Mono\ Slashed
-
 " disable arrow keys
 map <up> <nop>
 map <down> <nop>

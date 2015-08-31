@@ -59,7 +59,7 @@ delete() {
 images() {
    REPO=$(echo $1 | cut -d/ -f1)
    QUERY=$2
-   curl -s "https://$REPO/v1/search?q=$QUERY" | jq --raw-output '.results[].name' | sort -n
+   curl -s "https://$REPO/v1/search?q=$QUERY" | jq --raw-output '.results[].name' | sort
 }
 
 tags() {

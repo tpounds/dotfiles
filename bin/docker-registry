@@ -65,7 +65,15 @@ images() {
 tags() {
    REPO=$(echo $1 | cut -d/ -f1)
    NAME=$(echo $1 | cut -d/ -f2-)
-   curl -s https://$REPO/v1/repositories/$NAME/tags | jq --raw-output 'to_entries | map([.key, .value[0:12]] | join(" ")) | .[]' | sort -V | column -t
+   if [ -n "$NAME" -a "$REPO" != "$NAME" ]; then
+      curl -s https://$REPO/v1/repositories/$NAME/tags | jq --raw-output 'to_entries | map([.key, .value[0:12]] | join(" ")) | .[]' | sort -V | column -t
+   else
+      for i in $(images $REPO); do
+         echo $i
+         tags $REPO/$i
+         echo
+      done
+   fi
 }
 
 case "$1" in

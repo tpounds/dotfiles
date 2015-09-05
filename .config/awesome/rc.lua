@@ -120,7 +120,7 @@ batterywidget.width = 32
 --batterywidget.align = "center"
 batteryicon   = widget({ type = "imagebox" })
 batteryicon.image = image(awful.util.getdir("config") .. "/icons2/battery.png")
-batterytimer = timer({ timeout = 60 })
+batterytimer = timer({ timeout = 1 })
 batterytimer:add_signal("timeout",
    function()
       local charge_full = io.open("/sys/class/power_supply/BAT0/charge_full", "r")

@@ -20,6 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
+check_registry_version() {
+   IS_V1_REGISTRY=$(curl -s -o /dev/null -w "%{http_code}" "https://$1/v1/" | grep 200)
+   IS_V2_REGISTRY=$(curl -s -o /dev/null -w "%{http_code}" "https://$1/v2/" | grep 200)
+}
+
 help() {
    echo "Usage: docker-registry COMMAND [arg...]"
    echo ""
@@ -59,14 +64,23 @@ delete() {
 images() {
    REPO=$(echo $1 | cut -d/ -f1)
    QUERY=$2
-   curl -s "https://$REPO/v1/search?q=$QUERY" | jq --raw-output '.results[].name' | sort
+   if [ -n "$IS_V1_REGISTRY" ]; then
+      curl -s "https://$REPO/v1/search?q=$QUERY" | jq --raw-output '.results[].name' | sort
+   elif [ -n "$IS_V2_REGISTRY" ]; then
+      QUERY=${QUERY:=.*}
+      curl -s "https://$REPO/v2/_catalog" | jq --raw-output '.repositories[]' | grep "$QUERY" | sort
+   fi
 }
 
 tags() {
    REPO=$(echo $1 | cut -d/ -f1)
    NAME=$(echo $1 | cut -d/ -f2-)
    if [ -n "$NAME" -a "$REPO" != "$NAME" ]; then
-      curl -s https://$REPO/v1/repositories/$NAME/tags | jq --raw-output 'to_entries | map([.key, .value[0:12]] | join(" ")) | .[]' | sort -V | column -t
+      if [ -n "$IS_V1_REGISTRY" ]; then
+         curl -s https://$REPO/v1/repositories/$NAME/tags | jq --raw-output 'to_entries | map([.key, .value[0:12]] | join(" ")) | .[]' | sort -V | column -t
+      elif [ -n "$IS_V2_REGISTRY" ]; then
+         curl -s https://$REPO/v2/$NAME/tags/list | jq --raw-output '.tags[]' | sort -V
+      fi
    else
       for i in $(images $REPO); do
          echo $i
@@ -75,6 +89,8 @@ tags() {
       done
    fi
 }
+
+check_registry_version $(echo $2 | cut -d/ -f1)
 
 case "$1" in
    delete)

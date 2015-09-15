@@ -115,7 +115,7 @@ mytasklist.buttons = awful.util.table.join(
                                           end))
 
 batterywidget = widget({ type = "textbox" })
-batterywidget.text  = "50%" -- TODO
+batterywidget.text  = "0%"
 batterywidget.width = 32
 --batterywidget.align = "center"
 batteryicon   = widget({ type = "imagebox" })
@@ -162,7 +162,7 @@ cputimer:add_signal("timeout",
 cputimer:start()
 
 memorytext = widget({ type = "textbox" })
-memorytext.text = "50%" -- TODO
+memorytext.text = "0%"
 memorytext.width = 120
 --memorytext.align = "center"
 memoryicon = widget({ type = "imagebox" })

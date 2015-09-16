@@ -83,7 +83,7 @@ a.out
 # ignore vim
 *.swo
 *.swp
-*.viminfo
+.viminfo
 .vim/backups
 .vim/swaps
 .vim/undo

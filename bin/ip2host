@@ -20,27 +20,21 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-use DB_File;
-use Memoize qw(memoize unmemoize);
-use Memoize::Storable;
+use Memoize qw(memoize);
 
+memoize 'ip2host'; # in memory cache
 sub ip2host {
    my $ip = shift;
    my $hostname = `host $ip | awk -F' ' '{print \$NF}'`;
    $hostname =~ s/^(.*)\n$/$1/;
+   # print STDERR "resolved: $ip -> $hostname\n";
    if ($hostname eq "3(NXDOMAIN)") {
-       return $ip;
+      return $ip;
    }
    return $hostname;
 }
 
-#tie my %disk_cache => 'DB_File', '/tmp/ip2host.cache.db', O_RDWR | O_CREAT, 0666;
-#memoize 'ip2host', SCALAR_CACHE => [HASH => \%disk_cache];
-
-memoize 'ip2host'; # in memory cache
 while (my $ip = <>) {
-    #print STDERR "resolving: $ip\n";
-  $ip =~ s/^\s*(.*)\s*$/$1/;
-  print ip2host($ip) . "\n";
+   $ip =~ s/^\s*(.*)\s*$/$1/;
+   print ip2host($ip) . "\n";
 }
-unmemoize 'ip2host';

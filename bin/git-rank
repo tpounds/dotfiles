@@ -52,7 +52,7 @@ esac
 
 (echo "Author#Commits#Files#Insertions(+)#Deletions(-)#Difference(+/-)"
  echo "------#-------#-----#-------------#------------#---------------"
- git log --follow --shortstat --pretty='%aN <%aE>' $@ |
+ git log --shortstat --pretty='%aN <%aE>' $@ |
  awk '/.*@/ {
          author=$0;
          commits[author]++;

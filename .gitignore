@@ -52,6 +52,10 @@ a.out
 *.tiff
 *.xcf
 
+# ignore logs
+*.log
+*.out
+
 # ignore media
 *.avi
 *.flac

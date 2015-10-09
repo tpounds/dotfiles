@@ -74,8 +74,8 @@ alias l.='ls -d .*'
 alias less='less -i -r'
 
 # default to opening multiple files in tabs
-alias vi='vim -p'
-alias vim='vim -p'
+alias vi='/usr/bin/vi -p'
+alias vim='/usr/bin/vim -p'
 
 # source private .zshrc
 for rc in $(ls -a ~/.private*/.zshrc); do source $rc; done

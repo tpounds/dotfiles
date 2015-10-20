@@ -34,6 +34,9 @@ RPROMPT='$vcs_info_msg_0_'
 # enable brace character class e.g. {a-z}
 setopt BRACE_CCL
 
+# enable command spelling correction
+setopt CORRECT
+
 # configure history
 HISTFILE=~/.zsh/history
 HISTSIZE=10000

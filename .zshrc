@@ -80,5 +80,8 @@ alias less='less -i -r'
 alias vi='/usr/bin/vi -p'
 alias vim='/usr/bin/vim -p'
 
+# source z
+source .zsh/z/z.sh
+
 # source private .zshrc
 for rc in $(ls -a ~/.private*/.zshrc); do source $rc; done

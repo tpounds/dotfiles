@@ -46,3 +46,6 @@
 [submodule ".vim/bundle/tagbar"]
 	path = .vim/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar.git
+[submodule ".zsh/z"]
+	path = .zsh/z
+	url = https://github.com/rupa/z.git

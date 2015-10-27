@@ -14,6 +14,8 @@
    undo = reset --mixed HEAD~1
 [push]
    default = simple
+[rebase]
+   autostash = true
 [user]
    email = trevor.pounds@gmail.com
    name = Trevor Pounds

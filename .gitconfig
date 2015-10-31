@@ -3,7 +3,7 @@
    amend = commit --amend
 
    # Pretty-print log with DAG (see: https://coderwall.com/p/euwpig/a-better-git-log)
-   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an <%aE>%Creset' --abbrev-commit
+   lg = log --color --graph --format='%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr) %C(bold blue)%an <%aE>%C(reset)'
 
    # Show pending changes
    staged   = diff --cached

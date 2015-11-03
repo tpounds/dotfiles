@@ -1,3 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
-docker run --tty --interactive --entrypoint /bin/bash $1
+IS_CONTAINER=$(docker ps | grep $1)
+if [ -n "$IS_CONTAINER" ];then
+   docker exec --interactive --tty $1 /bin/bash
+else
+   docker run --interactive --entrypoint /bin/bash --tty $1
+fi

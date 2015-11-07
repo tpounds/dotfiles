@@ -1,8 +1,9 @@
 #!/bin/bash
 
-IS_CONTAINER=$(docker ps | grep $1)
-if [ -n "$IS_CONTAINER" ];then
-   docker exec --interactive --tty $1 /bin/bash
+CONTAINER_ID=$(docker ps | grep $1 | head -1 | awk '{ print $1 }')
+IMAGE_ID=$(docker images | grep $1 | head -1 | awk '{ print $3 }')
+if [ -n "$CONTAINER_ID" ];then
+   docker exec --interactive --tty $CONTAINER_ID /bin/bash
 else
-   docker run --interactive --entrypoint /bin/bash --tty $1
+   docker run --interactive --entrypoint /bin/bash --tty $IMAGE_ID
 fi

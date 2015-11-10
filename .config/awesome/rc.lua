@@ -261,7 +261,6 @@ for s = 1, screen.count() do
         clockwidget, spacer,
         s == 1 and mysystray or nil,
         volumetext, volumeicon, spacer,
---        weatherwidget, weathericon, spacer,
         batterywidget, batteryicon, spacer,
         memorytext, memoryicon, spacer,
         cpuwidget, cpuicon, spacer,

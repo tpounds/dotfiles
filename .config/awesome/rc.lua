@@ -117,7 +117,6 @@ mytasklist.buttons = awful.util.table.join(
 batterywidget = widget({ type = "textbox" })
 batterywidget.text  = "0%"
 batterywidget.width = 32
---batterywidget.align = "center"
 batteryicon   = widget({ type = "imagebox" })
 batteryicon.image = image(awful.util.getdir("config") .. "/icons2/battery.png")
 batterytimer = timer({ timeout = 1 })
@@ -142,7 +141,6 @@ batterytimer:start()
 cpuwidget = widget({ type = "textbox" })
 cpuwidget.text  = "0%"
 cpuwidget.width = 32
---cpuwidget.align = "center"
 cpuicon = widget({ type = "imagebox" })
 cpuicon.image = image(awful.util.getdir("config") .. "/icons2/cpu2.png")
 cputimer = timer({ timeout = 1 })
@@ -164,7 +162,6 @@ cputimer:start()
 memorytext = widget({ type = "textbox" })
 memorytext.text = "0%"
 memorytext.width = 120
---memorytext.align = "center"
 memoryicon = widget({ type = "imagebox" })
 memoryicon.image = image(awful.util.getdir("config") .. "/icons2/memory.png")
 memorytimer = timer({ timeout = 1 })
@@ -185,7 +182,6 @@ memorytimer:start()
 volumetext = widget({ type = "textbox" })
 volumetext.text = "50%" -- TODO
 volumetext.width = 32
---volumetext.align = "center"
 volumeicon = widget({ type = "imagebox" })
 volumeicon.image = image(awful.util.getdir("config") .. "/icons2/volume.png")
 

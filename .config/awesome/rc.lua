@@ -161,20 +161,17 @@ cputimer:start()
 
 memorytext = widget({ type = "textbox" })
 memorytext.text = "0%"
-memorytext.width = 120
+memorytext.width = 32
 memoryicon = widget({ type = "imagebox" })
 memoryicon.image = image(awful.util.getdir("config") .. "/icons2/memory.png")
 memorytimer = timer({ timeout = 1 })
 memorytimer:add_signal("timeout",
    function()
       local meminfo = io.open("/proc/meminfo", "r")
---      local total = meminfo:read():match("MemTotal:%s+(%d+)%skB")
---      local free  = meminfo:read():match("MemFree:%s+(%d+)%skB")
---      memorytext.text = math.floor(free * 100 / total) .. "%"
-      local total = math.floor(meminfo:read():match("MemTotal:%s+(%d+)%skB") / 1024)
-      local free  = math.floor(meminfo:read():match("MemFree:%s+(%d+)%skB") / 1024)
+      local total = math.floor(meminfo:read():match("MemTotal:%s+(%d+)%skB"))
+      local free  = math.floor(meminfo:read():match("MemFree:%s+(%d+)%skB"))
       local percent = math.floor(free * 100 / total)
-      memorytext.text = string.format("%d%% (%d / %d MB)", percent, free, total)
+      memorytext.text = string.format("%d%%", percent)
       meminfo:close()
    end)
 memorytimer:start()

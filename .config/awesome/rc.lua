@@ -225,9 +225,6 @@ end
 
 volume_refresh()
 
-spacer = widget({ type = "textbox" })
-spacer.text = " "
-
 for s = 1, screen.count() do
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
@@ -258,12 +255,12 @@ for s = 1, screen.count() do
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
-        clockwidget, spacer,
+        clockwidget,
         s == 1 and mysystray or nil,
-        volumetext, volumeicon, spacer,
-        batterywidget, batteryicon, spacer,
-        memorytext, memoryicon, spacer,
-        cpuwidget, cpuicon, spacer,
+        volumetext, volumeicon,
+        batterywidget, batteryicon,
+        memorytext, memoryicon,
+        cpuwidget, cpuicon,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
     }

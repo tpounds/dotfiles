@@ -1,5 +1,10 @@
 export PATH=~/bin:$PATH
 
+# Fix Java UIs with AwesomeWM.
+#
+# see: http://awesome.naquadah.org/wiki/Problems_with_Java
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 fpath=(
    ~/.zsh/completions
    ~/.zsh/functions

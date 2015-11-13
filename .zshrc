@@ -1,6 +1,6 @@
 export PATH=~/bin:$PATH
 
-# Fix Java UIs with AwesomeWM.
+# Fix Java UI window parenting with AwesomeWM.
 #
 # see: http://awesome.naquadah.org/wiki/Problems_with_Java
 export _JAVA_AWT_WM_NONREPARENTING=1

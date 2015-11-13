@@ -5,7 +5,7 @@ IMAGE_ID=$(docker images | grep "${1/:/ *}" | head -1 | awk '{ print $3 }')
 if [ -n "$CONTAINER_ID" ];then
    docker exec --interactive --tty $CONTAINER_ID /bin/bash
 elif [ -n "$IMAGE_ID" ];then
-   docker run --interactive --entrypoint /bin/bash --tty $IMAGE_ID
+   docker run --interactive --entrypoint /bin/bash --rm --tty $IMAGE_ID
 else
    echo "ERROR: no container or image matched '$1'"
    exit 1

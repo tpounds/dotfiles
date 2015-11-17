@@ -25,4 +25,4 @@ if [ -z $remote ]; then
    branch=$(git for-each-ref --format='$(HEAD) %(refname:short)' refs/heads | awk '/^*/ { print $2 }')
    mergebase=$(git merge-base master $branch)
 fi
-git log --stat $remote..HEAD
+git log --stat $remote..HEAD $@

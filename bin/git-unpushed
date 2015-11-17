@@ -20,9 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-remote=$(git for-each-ref --format='%(HEAD) %(upstream:short)' refs/heads | awk '/^*/ { print $2 }')
+remote=$(git for-each-ref --format='%(HEAD) %(upstream:short)' refs/heads | awk '/^\*/ { print $2 }')
 if [ -z $remote ]; then
-   branch=$(git for-each-ref --format='$(HEAD) %(refname:short)' refs/heads | awk '/^*/ { print $2 }')
+   branch=$(git for-each-ref --format='$(HEAD) %(refname:short)' refs/heads | awk '/^\*/ { print $2 }')
    mergebase=$(git merge-base master $branch)
 fi
 git log --stat $remote..HEAD $@

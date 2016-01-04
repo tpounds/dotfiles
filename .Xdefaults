@@ -1,7 +1,7 @@
 rxvt*transparent: true
 rxvt*scrollBar: false
 rxvt*shading: 30
-rxvt*font: xft:Droid Sans Mono Dotted:pixelsize=13:antialias=true:hinting=true
+rxvt*font: xft:Droid Sans Mono Dotted:antialias=true:hinting=true
 rxvt*fading: 70
 
 ! zenburn color scheme

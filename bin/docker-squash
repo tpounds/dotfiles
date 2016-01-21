@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Squash all image layers into one consisting of a single layer.
-# 
+#
 # see: https://github.com/docker/docker/issues/332#issuecomment-167783891
 
 SRC_TAG_OR_HASH=$1

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+FILE=$2
+CONTAINER_ID=$(docker ps | grep "${1/:/ *}" | head -1 | awk '{ print $1 }')
+if [ -n "$CONTAINER_ID" ];then
+   docker exec --interactive --tty $CONTAINER_ID tail -f $FILE
+else
+   echo "ERROR: no container matched '$1'"
+   exit 1
+fi

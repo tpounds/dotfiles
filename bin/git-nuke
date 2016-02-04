@@ -20,10 +20,20 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-read -r -p "Discard all non-upstream changes? [y/N] " yes_no
-case $yes_no in
-    [yY])
-       git reset --hard origin/master
-       git clean -d -f
-    ;;
+case "$1" in
+   --all)
+      read -r -p "Discard all non-upstream changes? [y/N] " yes_no
+      case $yes_no in
+          [yY])
+             git reset --hard origin/master
+             git clean -d -f
+          ;;
+      esac
+   ;;
+   --ignored)
+      git status --ignored --short $@ | awk '/!!/ { print $2 }' | xargs rm -rf
+   ;;
+   --untracked)
+      git status --short $@ | awk '/^\?\?/ { print $2 }'
+   ;;
 esac

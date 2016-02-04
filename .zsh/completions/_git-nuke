@@ -1,0 +1,18 @@
+#compdef git-nuke
+
+_git-nuke() {
+   local -a options
+   options=(
+      '--all:discard unpushed changes'
+      '--ignored:discard ignored files'
+      '--untracked:discard untracked files'
+   )
+
+   if (( CURRENT == 2 )); then
+      _describe 'values' options
+   fi
+
+   return 0
+}
+
+_git-nuke

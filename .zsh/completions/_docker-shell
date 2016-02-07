@@ -1,0 +1,13 @@
+#compdef docker-shell
+
+_docker-shell() {
+   if (( CURRENT == 2 )); then
+      _alternative \
+         "containers::(($(docker ps --format '{{.Image}}')\:'desc'))" \
+         "images::($(docker images | tail -n +2 | cut -d/ -f3- | awk '{ printf "%s:%s\n", $1, $2 }'))"
+   fi
+
+   return 0
+}
+
+_docker-shell

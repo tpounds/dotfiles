@@ -12,6 +12,10 @@
 
    # Undo the last commit and keep changes in working directory
    undo = reset --mixed HEAD~1
+
+   # Show branch merge status
+   merged   = branch --merged
+   unmerged = branch --no-merged
 [push]
    default = simple
 [rebase]

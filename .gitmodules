@@ -49,3 +49,6 @@
 [submodule ".zsh/z"]
 	path = .zsh/z
 	url = https://github.com/rupa/z.git
+[submodule ".vim/bundle/quick-scope"]
+	path = .vim/bundle/quick-scope
+	url = https://github.com/unblevable/quick-scope.git

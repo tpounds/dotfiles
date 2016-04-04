@@ -35,7 +35,7 @@ case "$1" in
       echo "OPTIONS"
       echo ""
       echo "   -h, --help   show this help"
-      echo "   -i, --items  number of items to sample"
+      echo "   -i, --items  number of items to sample (default 10)"
       echo ""
       echo "EXAMPLES"
       echo ""

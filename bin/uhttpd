@@ -25,6 +25,7 @@ HTTP_OK="HTTP/1.1 200 OK"
 file=$1
 case ${file##*.} in
    htm*) headers="$HTTP_OK\r\nContent-Type: text/html\r\n\r\n"  ;;
+   svg)  headers="$HTTP_OK\r\nContent-Type: image/svg+xml\r\n\r\n"   ;;
    xml)  headers="$HTTP_OK\r\nContent-Type: text/xml\r\n\r\n"   ;;
    *)    headers="$HTTP_OK\r\nContent-Type: text/plain\r\n\r\n" ;;
 esac

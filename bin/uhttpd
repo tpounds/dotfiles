@@ -31,5 +31,5 @@ case ${file##*.} in
 esac
 
 while [ -e $file ]; do
-   echo -n $headers | cat - $file | nc -l 8080
+   echo -n $headers | cat - $file | nc -l -p 8080
 done

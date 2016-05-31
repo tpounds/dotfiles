@@ -16,6 +16,8 @@
    # Show branch merge status
    merged   = branch --merged
    unmerged = branch --no-merged
+[init]
+   templatedir = ~/.git-template
 [push]
    default = simple
 [rebase]

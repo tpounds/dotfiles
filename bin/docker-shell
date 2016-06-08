@@ -7,9 +7,13 @@ CONTAINER_ID=$(docker ps | grep "${ID/:/ *}" | head -1 | awk '{ print $1 }')
 IMAGE_ID=$(docker images | grep "${ID/:/ *}" | head -1 | awk '{ print $3 }')
 
 if [ -n "$CONTAINER_ID" ];then
+   set -x
    docker exec --interactive --tty $CONTAINER_ID $ARGS /bin/bash
+   set +x
 elif [ -n "$IMAGE_ID" ];then
+   set -x
    docker run --interactive --entrypoint /bin/bash --rm --tty $ARGS $IMAGE_ID
+   set +x
 else
    echo "ERROR: no container or image matched '$1'"
    exit 1

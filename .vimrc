@@ -38,3 +38,6 @@ imap <up> <nop>
 imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
+
+" disable Ex-Mode
+nnoremap Q <nop>

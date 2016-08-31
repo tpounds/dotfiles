@@ -20,6 +20,8 @@
    verbose = true
 [init]
    templatedir = ~/.git-template
+[pull]
+   rebase = true
 [push]
    default = simple
 [rebase]

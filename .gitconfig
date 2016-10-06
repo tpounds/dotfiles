@@ -20,6 +20,8 @@
    verbose = true
 [init]
    templatedir = ~/.git-template
+[log]
+   follow = true
 [merge]
    ff = no
 [pull]

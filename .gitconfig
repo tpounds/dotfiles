@@ -20,6 +20,8 @@
    verbose = true
 [init]
    templatedir = ~/.git-template
+[merge]
+   ff = no
 [pull]
    rebase = true
 [push]

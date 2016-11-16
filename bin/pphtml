@@ -1,0 +1,8 @@
+#!/bin/sh
+
+PYGMENTIZE=$(which pygmentize)
+if [ -n "$PYGMENTIZE" ]; then
+    tidy -i | pygmentize -l html
+else
+    tidy -i
+fi

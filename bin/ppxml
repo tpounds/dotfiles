@@ -1,3 +1,8 @@
 #!/bin/sh
 
-xmllint --format -
+PYGMENTIZE=$(which pygmentize)
+if [ -n "$PYGMENTIZE" ]; then
+    xmllint --format - | pygmentize -l xml
+else
+    xmllint --format -
+fi

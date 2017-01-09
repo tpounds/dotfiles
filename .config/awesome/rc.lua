@@ -330,6 +330,9 @@ globalkeys = awful.util.table.join(
    awful.key({ }, "XF86AudioLowerVolume", volume_down),
    awful.key({ }, "XF86AudioMute",        volume_mute),
 
+   -- Screenshot
+   awful.key({ }, "Print", function () awful.util.spawn("scrot -e 'gimp $f' -m") end),
+
    -- Lock Screen
    awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("xscreensaver-command -lock") end)
 )

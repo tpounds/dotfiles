@@ -29,6 +29,7 @@
 [push]
    default = simple
 [rebase]
+   autosquash = true
    autostash = true
 [user]
    email = trevor.pounds@gmail.com

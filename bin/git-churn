@@ -4,10 +4,10 @@
 # https://gist.github.com/coreyhaines/829932
 #
 # Scriptified by Gary Bernhardt
-# https://github.com/garybernhardt/dotfiles/blob/bin/git-churn
+# https://github.com/garybernhardt/dotfiles/blob/master/bin/git-churn
 #
 # Modified by Trevor Pounds
-# https://github.com/tpounds/dotfiles/blob/bin/git-churn
+# https://github.com/tpounds/dotfiles/blob/master/bin/git-churn
 #
 # Put this anywhere on your $PATH (~/bin is recommended). Then git will see it
 # and you'll be able to do `git churn`.

@@ -69,7 +69,7 @@ images() {
       curl -s "https://$REPO/v1/search?q=$QUERY" | jq --raw-output '.results[].name' | sort
    elif [ -n "$IS_V2_REGISTRY" ]; then
       QUERY=${QUERY:=.*}
-      curl -s "https://$REPO/v2/_catalog" | jq --raw-output '.repositories[]' | grep "$QUERY" | sort
+      curl -s "https://$REPO/v2/_catalog?n=1000" | jq --raw-output '.repositories[]' | grep "$QUERY" | sort
    fi
 }
 

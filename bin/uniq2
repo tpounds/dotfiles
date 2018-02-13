@@ -20,10 +20,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-while getopts "chi" opt; do
+while getopts "chip" opt; do
     case "$opt" in
         c) opt_print_count=1 ;;
         i) opt_ignore_case=1 ;;
+        p) opt_print_pct=1   ;;
         h)
             echo "Usage: uniq2 [OPTION]..."
             echo ""
@@ -37,6 +38,7 @@ while getopts "chi" opt; do
             echo "   -c   prefix lines by the number of occurrences"
             echo "   -h   display this help and exit"
             echo "   -i   ignore differences in case when comparing"
+            echo "   -p   prefix lines by the percentage of occurrences"
             echo ""
             echo "EXAMPLES"
             echo ""
@@ -62,13 +64,16 @@ else
 fi
 
 if [ $opt_print_count ]; then
-   fn_print="printf(\"%7s %s\n\", k[i], i);"
+   fn_print="printf(\"%7d %s\n\", k[i], i);"
+elif [ $opt_print_pct ]; then
+   fn_print="printf(\"%7.2f%% (%d/%d) %s\n\", (k[i]*100)/sum, k[i], sum, i);"
 else
    fn_print="print i"
 fi
 
 awk "{
         k[$fn_to_lower(\$0)]++
+        sum++
      }
      END {
         for(i in k) {

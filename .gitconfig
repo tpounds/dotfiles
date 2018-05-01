@@ -24,8 +24,6 @@
    follow = true
 [merge]
    ff = no
-[pull]
-   rebase = true
 [push]
    default = simple
 [rebase]

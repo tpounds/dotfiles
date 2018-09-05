@@ -182,27 +182,7 @@ gears.timer.start_new(1, function()
       return true
    end)
 
-cpuwidget = wibox.widget.textbox()
-cpuwidget.align = "right"
-cpuwidget.text = "0%"
-cpuwidget.forced_width = 32
-cpuicon = wibox.widget.imagebox()
-cpuicon.image = awful.util.getdir("config") .. "/icons2/cpu2.png"
-jiffies = {}
-gears.timer.start_new(1, function()
-      local proc_stat = io.open("/proc/stat", "r")
-      local user, nice, system, idle = proc_stat:read():match("cpu%s+(%d+) (%d+) (%d+) (%d+)")
-      local usage = 0
-      if jiffies.user then
-         usage = math.floor(100 - (idle-jiffies.idle) / (user-jiffies.user + system-jiffies.system + nice-jiffies.nice + idle-jiffies.idle) * 100)
-      end
-
-      jiffies.user, jiffies.nice, jiffies.system, jiffies.idle = user, nice, system, idle
-      cpuwidget.text = string.format("%2d%%", usage)
-      proc_stat:close()
-
-      return true
-   end)
+local cpu_widget = require("cpu")
 
 memorytext = wibox.widget.textbox()
 memorytext.align = "right"
@@ -322,7 +302,7 @@ awful.screen.connect_for_each_screen(function(s)
             volumetext, volumeicon,
             batterywidget, batteryicon,
             memorytext, memoryicon,
-            cpuwidget, cpuicon,
+            cpu_widget,
             wibox.widget.textclock(" %b %d, %I:%M %p "),
             s.mylayoutbox,
         },

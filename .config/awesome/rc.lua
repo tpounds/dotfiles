@@ -183,23 +183,7 @@ gears.timer.start_new(1, function()
    end)
 
 local cpu_widget = require("cpu")
-
-memorytext = wibox.widget.textbox()
-memorytext.align = "right"
-memorytext.text = "0%"
-memorytext.forced_width = 32
-memoryicon = wibox.widget.imagebox()
-memoryicon.image = awful.util.getdir("config") .. "/icons2/memory.png"
-gears.timer.start_new(1, function()
-      local meminfo = io.open("/proc/meminfo", "r")
-      local total = math.floor(meminfo:read():match("MemTotal:%s+(%d+)%skB"))
-      local free  = math.floor(meminfo:read():match("MemFree:%s+(%d+)%skB"))
-      local percent = math.floor(free * 100 / total)
-      memorytext.text = string.format("%d%%", percent)
-      meminfo:close()
-
-      return true
-   end)
+local mem_widget = require("memory")
 
 volumetext = wibox.widget.textbox()
 volumetext.align = "right"
@@ -301,7 +285,7 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.widget.systray(),
             volumetext, volumeicon,
             batterywidget, batteryicon,
-            memorytext, memoryicon,
+            mem_widget,
             cpu_widget,
             wibox.widget.textclock(" %b %d, %I:%M %p "),
             s.mylayoutbox,

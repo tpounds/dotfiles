@@ -8,6 +8,8 @@ elif [ -e "$GIT_DIR/rebase-merge" ]; then
    git rebase --abort
 elif [ -e "$GIT_DIR/MERGE_HEAD" ]; then
    git merge --abort
+elif [ -e "$GIT_DIR/CHERRY_PICK_HEAD" ]; then
+   git cherry-pick --abort
 else
    echo "ERROR: Unknown state, nothing to abort."
    exit 1

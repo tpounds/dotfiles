@@ -52,10 +52,18 @@ esac
          author=$0;
          commits[author]++;
      }
-     /[0-9]+ files? changed/ {
+     /[0-9]+ files? changed, [0-9]+ insertions?\(\+\), [0-9]+ deletions?\(-\)$/ {
          files[author]   += $1;
          inserts[author] += $4;
          deletes[author] += $6;
+     }
+     /[0-9]+ files? changed, [0-9]+ insertions?\(\+\)$/ {
+         files[author]   += $1;
+         inserts[author] += $4;
+     }
+     /[0-9]+ files? changed, [0-9]+ deletions?\(-\)$/ {
+         files[author]   += $1;
+         deletes[author] += $4;
      }
      END {
          for (a in commits)

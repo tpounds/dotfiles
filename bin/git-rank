@@ -51,6 +51,9 @@ esac
  awk '/.*@/ {
          author=$0;
          commits[author]++;
+         files[author]   += 0;
+         inserts[author] += 0;
+         deletes[author] += 0;
      }
      /[0-9]+ files? changed, [0-9]+ insertions?\(\+\), [0-9]+ deletions?\(-\)$/ {
          files[author]   += $1;

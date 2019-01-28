@@ -47,8 +47,12 @@ esac
 
 (echo "Author# Commits# Files# Insertions(+)# Deletions(-)# Difference(+/-)"
  echo "------# -------# -----# -------------# ------------# ---------------"
- git log --no-renames --shortstat --pretty='%aN <%aE>' "$@" |
- awk '/.*@/ {
+ git log --date='format:%G %m' --no-renames --shortstat --pretty='%aN <%aE>%nyymm: %ad' "$@" |
+ awk 'BEGIN {
+         yymm_min = 999999;
+         yymm_max = 0;
+     }
+     /.*@/ {
          author=$0;
          commits[author]++;
          files[author]   += 0;
@@ -68,9 +72,25 @@ esac
          files[author]   += $1;
          deletes[author] += $4;
      }
+     /yymm: [0-9]+ [0-9]+/ {
+         yymm_cnt[author,$2$3]++;
+         yymm_cnt[author,max] = (yymm_cnt[author,max] > yymm_cnt[author,$2$3]) ? yymm_cnt[author,max] : yymm_cnt[author,$2$3];
+         yymm_min = (yymm_min < $2$3) ? yymm_min : $2$3;
+         yymm_max = (yymm_max > $2$3) ? yymm_max : $2$3;
+     }
      END {
-         for (a in commits)
-             print a, "#", commits[a], "#", files[a], "#", inserts[a], "#", deletes[a], "#", inserts[a] - deletes[a]
+         split("▁ ▂ ▃ ▄ ▅ ▆ ▇ █", sparks)
+         for (a in commits) {
+             for (yymm = yymm_min; yymm <= yymm_max;) {
+                spark[a] = spark[a] sparks[int(yymm_cnt[a,yymm] / yymm_cnt[a,max] * 7) + 1];
+                if (yymm % 100 < 12) {
+                   yymm++;
+                } else {
+                   yymm = (int(yymm / 100) * 100) + 101;
+                }
+             }
+             print a, "#", commits[a], "#", files[a], "#", inserts[a], "#", deletes[a], "#", inserts[a] - deletes[a], "#", spark[a]
+         }
      }' |
  sort -t'#' -n -k $sort_column
 ) | column -s'#' -t

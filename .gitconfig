@@ -10,6 +10,9 @@
    unstaged = diff
    pending  = diff HEAD
 
+   # Search for work to do
+   todo = grep -i -e FIXME -e NOTE -e TODO -e XXX
+
    # Undo the last commit and keep changes in working directory
    undo = reset --mixed HEAD~1
 

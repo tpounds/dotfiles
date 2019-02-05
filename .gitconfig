@@ -11,7 +11,7 @@
    pending  = diff HEAD
 
    # Search for work to do
-   todo = grep -i -e FIXME -e NOTE -e TODO -e XXX
+   todo = grep -i -e '\\bFIXME\\b' -e '\\bNOTE\\b' -e '\\bTODO\\b' -e '\\bXXX\\b'
 
    # Undo the last commit and keep changes in working directory
    undo = reset --mixed HEAD~1

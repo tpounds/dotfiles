@@ -579,6 +579,9 @@ client.connect_signal("manage", function (c)
         -- Prevent clients from being unreachable after screen count changes.
         awful.placement.no_offscreen(c)
     end
+
+    -- Round window corners using default radius
+    c.shape = gears.shape.rounded_rect
 end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.

@@ -40,6 +40,9 @@ end
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(awful.util.get_themes_dir() .. "default/theme.lua")
 
+-- Add gaps between windows
+beautiful.useless_gap = 5
+
 -- This is used later as the default terminal and editor to run.
 terminal = "rxvt"
 editor = os.getenv("EDITOR") or "editor"

@@ -24,7 +24,8 @@ awful.widget.watch("free | grep Mem:", 1,
       local total, used, free, shared, buffcache, available
          = stdout:match("(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*(%d+)%s*(%d+)")
 
-      widget.text:set_text(string.format("%2d%%", 100*used/total))
+      widget.text:set_text(
+         string.format("%2.0f%%", (100 * used) / total))
    end,
    mem_widget
 )

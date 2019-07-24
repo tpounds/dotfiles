@@ -36,7 +36,7 @@ awful.widget.watch("cat /proc/stat | grep '^cpu '", 1,
       used_prev = used_now
 
       widget.text:set_text(
-         string.format("%2d%%", (100 * used_diff / (idle_diff + used_diff))))
+         string.format("%2.0f%%", (100 * used_diff) / (idle_diff + used_diff)))
    end,
    cpu_widget
 )

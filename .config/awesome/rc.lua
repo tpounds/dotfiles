@@ -161,49 +161,7 @@ local tasklist_buttons = awful.util.table.join(
 local bat_widget = require("battery")
 local cpu_widget = require("cpu")
 local mem_widget = require("memory")
-
-volumetext = wibox.widget.textbox()
-volumetext.align = "right"
-volumetext.text = "50%" -- TODO
-volumetext.forced_width = 32
-volumeicon = wibox.widget.imagebox()
-volumeicon.image = awful.util.getdir("config") .. "/icons2/volume.png"
-
-function volume_up()
-   local amixer = io.popen("amixer set Master 5%+")
-   volumetext.text = amixer:read("*a"):match("(%d+%%)")
-   amixer:close()
-end
-
-function volume_down()
-   local amixer = io.popen("amixer set Master 5%-")
-   volumetext.text = amixer:read("*a"):match("(%d+%%)")
-   amixer:close()
-end
-
-function volume_mute()
-   local amixer = io.popen("amixer set Master toggle")
-   if amixer:read("*a"):match("off") then
-      volumeicon.image = awful.util.getdir("config") .. "/icons2/volume-mute.png"
-   else
-      volumeicon.image = awful.util.getdir("config") .. "/icons2/volume.png"
-   end
-   amixer:close()
-end
-
-function volume_refresh()
-   local amixer = io.popen("amixer get Master")
-   local percent, on_off = amixer:read("*a"):match("%[(%d+%%)%] %[%-?%d+%.%d%ddB%] %[(%w+)%]")
-   volumetext.text = percent
-   if on_off == "off" then
-      volumeicon.image = awful.util.getdir("config") .. "/icons2/volume-mute.png"
-   else
-      volumeicon.image = awful.util.getdir("config") .. "/icons2/volume.png"
-   end
-   amixer:close()
-end
-
-volume_refresh()
+local vol_widget = require("volume")
 
 local function set_wallpaper(s)
     -- Wallpaper
@@ -259,9 +217,9 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
-            volumetext, volumeicon,
             mem_widget,
             cpu_widget,
+            vol_widget,
             bat_widget,
             wibox.widget.textclock(" %b %d, %I:%M %p "),
             s.mylayoutbox,
@@ -379,9 +337,9 @@ globalkeys = awful.util.table.join(
               {description = "show the menubar", group = "launcher"}),
 
    -- Audio
-   awful.key({ }, "XF86AudioRaiseVolume", volume_up),
-   awful.key({ }, "XF86AudioLowerVolume", volume_down),
-   awful.key({ }, "XF86AudioMute",        volume_mute),
+   awful.key({ }, "XF86AudioRaiseVolume", vol_widget.up),
+   awful.key({ }, "XF86AudioLowerVolume", vol_widget.down),
+   awful.key({ }, "XF86AudioMute",        vol_widget.mute),
 
    -- Audio
    awful.key({ }, "XF86MonBrightnessDown", function()

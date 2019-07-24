@@ -158,30 +158,7 @@ local tasklist_buttons = awful.util.table.join(
                                               awful.client.focus.byidx(-1)
                                           end))
 
-batterywidget = wibox.widget.textbox()
-batterywidget.align = "right"
-batterywidget.text  = "0%"
-batterywidget.forced_width = 32
-batteryicon = wibox.widget.imagebox()
-batteryicon.image = awful.util.getdir("config") .. "/icons2/battery.png"
-gears.timer.start_new(1, function()
-      local charge_full = io.open("/sys/class/power_supply/BAT0/charge_full", "r")
-      local charge_now  = io.open("/sys/class/power_supply/BAT0/charge_now",  "r")
-      batterywidget.text = math.min(100, math.floor(charge_now:read() * 100 / charge_full:read())) .. "%"
-      charge_full:close()
-      charge_now:close()
-
-      local status = io.open("/sys/class/power_supply/BAT0/status", "r")
-      if status:read():match("Discharging") then
-         batteryicon.image = awful.util.getdir("config") .. "/icons2/battery.png"
-      else
-         batteryicon.image = awful.util.getdir("config") .. "/icons2/plug.png"
-      end
-      status:close()
-
-      return true
-   end)
-
+local bat_widget = require("battery")
 local cpu_widget = require("cpu")
 local mem_widget = require("memory")
 
@@ -283,9 +260,9 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             volumetext, volumeicon,
-            batterywidget, batteryicon,
             mem_widget,
             cpu_widget,
+            bat_widget,
             wibox.widget.textclock(" %b %d, %I:%M %p "),
             s.mylayoutbox,
         },

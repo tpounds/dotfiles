@@ -1,18 +1,19 @@
 local awful = require("awful")
+local dpi   = require("beautiful.xresources").apply_dpi
 local wibox = require("wibox")
 
 cpu_widget = wibox.widget {
    {
-      id     = "text",
-      widget = wibox.widget.textbox,
-      align  = "right",
-      text   = "0%",
-      forced_width = 32
-   },
-   {
       id     = "icon",
       widget = wibox.widget.imagebox,
       image  = awful.util.getdir("config") .. "/icons2/cpu2.png"
+   },
+   {
+      id     = "text",
+      widget = wibox.widget.textbox,
+      align  = "left",
+      text   = "0%",
+      forced_width = dpi(32)
    },
    layout = wibox.layout.fixed.horizontal,
 }

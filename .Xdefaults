@@ -4,6 +4,10 @@ rxvt*shading: 30
 rxvt*font: xft:Droid Sans Mono Dotted:antialias=true:hinting=true
 rxvt*fading: 70
 
+! Disable annoying ISO 14755 input method shortcuts
+rxvt.iso14755: false
+rxvt.iso14755_52: false
+
 ! zenburn color scheme
 rxvt*background: #1F1F1F
 rxvt*foreground: #DCDCCC

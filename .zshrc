@@ -68,6 +68,12 @@ if [ -x /usr/bin/dircolors ]; then
     #alias egrep='egrep --color=auto'
 fi
 
+# k8s aliases/completions
+command -v kubectl >/dev/null 2>&1 && {
+   alias k='kubectl'
+   source <(kubectl completion zsh)
+}
+
 # ls: colorize output
 alias ls='ls --color=auto'
 # ls: use long listing format

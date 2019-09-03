@@ -74,6 +74,12 @@ command -v kubectl >/dev/null 2>&1 && {
    source <(kubectl completion zsh)
 }
 
+# terraform aliases/completions
+command -v terraform >/dev/null 2>&1 && {
+   alias tf='terraform'
+   complete -o nospace -C terraform terraform
+}
+
 # ls: colorize output
 alias ls='ls --color=auto'
 # ls: use long listing format

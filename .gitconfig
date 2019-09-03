@@ -2,6 +2,10 @@
    # Replace HEAD with a new commit that includes both existing and currently staged changes.
    amend = commit --amend
 
+   # Update commit message with a suitable rebase --autosquash prefix.
+   fixup  = commit --fixup
+   squash = commit --squash
+
    # Pretty-print log with DAG (see: https://coderwall.com/p/euwpig/a-better-git-log)
    lg = log --all --color --date-order --graph --format='%C(auto)%h%C(reset) -%C(auto)%d%C(reset) %s %C(green)(%cr) %C(bold blue)%aN <%aE>%C(reset)'
 

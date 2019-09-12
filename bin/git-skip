@@ -1,0 +1,12 @@
+#!/bin/bash
+
+GIT_DIR=$(git rev-parse --git-dir)
+
+if [ -e "$GIT_DIR/rebase-apply" ]; then
+   git rebase --skip
+elif [ -e "$GIT_DIR/rebase-merge" ]; then
+   git rebase --skip
+else
+   echo "ERROR: Unknown state, nothing to skip."
+   exit 1
+fi

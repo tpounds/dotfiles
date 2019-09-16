@@ -80,6 +80,12 @@ command -v terraform >/dev/null 2>&1 && {
    complete -o nospace -C terraform terraform
 }
 
+# vault aliases/completions
+command -v vault >/dev/null 2>&1 && {
+   alias v='vault'
+   complete -o nospace -C vault vault
+}
+
 # ls: colorize output
 alias ls='ls --color=auto'
 # ls: use long listing format

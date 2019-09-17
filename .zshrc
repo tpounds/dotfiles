@@ -80,6 +80,12 @@ command -v consul >/dev/null 2>&1 && {
    complete -o nospace -C consul consul
 }
 
+# nomad aliases/completions
+command -v nomad >/dev/null 2>&1 && {
+   alias n='nomad'
+   complete -o nospace -C nomad nomad
+}
+
 # terraform aliases/completions
 command -v terraform >/dev/null 2>&1 && {
    alias tf='terraform'

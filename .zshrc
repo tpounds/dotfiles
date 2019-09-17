@@ -74,6 +74,11 @@ command -v kubectl >/dev/null 2>&1 && {
    source <(kubectl completion zsh)
 }
 
+# aws cli completions
+command -v aws_completer >/dev/null 2>&1 && {
+   complete -C aws_completer aws
+}
+
 # consul aliases/completions
 command -v consul >/dev/null 2>&1 && {
    alias c='consul'

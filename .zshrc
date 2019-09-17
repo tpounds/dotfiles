@@ -74,6 +74,12 @@ command -v kubectl >/dev/null 2>&1 && {
    source <(kubectl completion zsh)
 }
 
+# consul aliases/completions
+command -v consul >/dev/null 2>&1 && {
+   alias c='consul'
+   complete -o nospace -C consul consul
+}
+
 # terraform aliases/completions
 command -v terraform >/dev/null 2>&1 && {
    alias tf='terraform'

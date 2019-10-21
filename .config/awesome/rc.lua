@@ -160,6 +160,7 @@ local tasklist_buttons = awful.util.table.join(
 
 local bat_widget = require("battery")
 local cpu_widget = require("cpu")
+local gc_widget  = require("gc")
 local mem_widget = require("memory")
 local vol_widget = require("volume")
 

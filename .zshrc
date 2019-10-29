@@ -91,6 +91,12 @@ command -v nomad >/dev/null 2>&1 && {
    complete -o nospace -C nomad nomad
 }
 
+# packer aliases/completions
+command -v packer >/dev/null 2>&1 && {
+   alias p='packer'
+   complete -o nospace -C packer packer
+}
+
 # terraform aliases/completions
 command -v terraform >/dev/null 2>&1 && {
    alias tf='terraform'

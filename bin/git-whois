@@ -20,4 +20,4 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-git log --author="$1" --format="%an <%ae>" --regexp-ignore-case | sort | uniq
+git log --author="$1" --format="%aN <%aE>" --regexp-ignore-case | sort | uniq

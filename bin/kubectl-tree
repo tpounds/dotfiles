@@ -1,0 +1,27 @@
+#!/bin/bash
+
+kubectl get pod --all-namespaces -o=custom-columns=NODE:.spec.nodeName,NS:.metadata.namespace,NAME:.metadata.name,STATUS:.status.phase |
+   tail -n +2 |
+   awk '// {
+      node = $1
+      ns   = $2
+      pod  = $3
+      status = $4
+
+      nodes[node]   = node
+      pod2node[pod] = node
+      pod2ns[pod]   = ns
+      pod2status[pod] = status
+   }
+   END {
+      for (n in nodes) {
+         print "──", n
+         for (p in pod2node) {
+            if (pod2node[p] == n) {
+               printf "   ├── %s/%s # %s # %s\n", pod2ns[p], p, pod2status[p], pod2restarts[p]
+            }
+         }
+      }
+   }
+   ' |
+   column -s'#' -t

@@ -68,6 +68,12 @@ if [ -x /usr/bin/dircolors ]; then
     #alias egrep='egrep --color=auto'
 fi
 
+# kind completions
+command -v kind >/dev/null 2>&1 && {
+   source <(kind completion zsh)
+   compdef _kind kind
+}
+
 # k8s aliases/completions
 command -v kubectl >/dev/null 2>&1 && {
    alias k='kubectl'

@@ -3,4 +3,4 @@
 # see: https://github.com/vishen/ktop
 # see: https://github.com/vishen/kube-resources
 # see: https://github.com/LeastAuthority/kubetop
-watch -d -n 1 -t "kubectl top node --no-headers | sort -h -k 3 -r"
+watch -d -n 1 -t "kubectl top node --no-headers $@ | sort -h -k 3 -r"

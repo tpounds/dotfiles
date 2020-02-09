@@ -64,9 +64,9 @@ else
 fi
 
 if [ $opt_print_count ]; then
-   fn_print="printf(\"%7d %s\n\", k[i], i);"
+   fn_print="printf(\"%7d %s\\n\", k[i], i);"
 elif [ $opt_print_pct ]; then
-   fn_print="printf(\"%7.2f%% (%d/%d) %s\n\", (k[i]*100)/sum, k[i], sum, i);"
+   fn_print="printf(\"%7.2f%% (%d/%d) %s\\n\", (k[i]*100)/sum, k[i], sum, i);"
 else
    fn_print="print i"
 fi

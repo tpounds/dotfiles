@@ -49,7 +49,7 @@ while getopts "chip" opt; do
             echo "   cat dupes.in | uniq2 | sort > deduped-ordered.out"
             exit 1
             ;;
-        \?)
+        *)
             uniq2 -h
             exit 1
             ;;

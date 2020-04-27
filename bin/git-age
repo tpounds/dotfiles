@@ -43,7 +43,7 @@ do
    mergebase=$(git merge-base master $branch)
    commits=$(git log --oneline --pretty='%h' $mergebase..$branch | wc -l)
    date=$(git log -1 --date=relative --pretty='%cd' $branch)
-   epoch=$(git log -1 --format='%at' $branch)
+   epoch=$(git log -1 --format='%ct' $branch)
    hash=$(git show --stat --date=relative --pretty='%h'  $branch | head -1)
    echo "$epoch#$branch@$hash#$commits#commits#($date)"
 done | column -s'#' -t | sort -r -n | cut -d' ' -f3-

@@ -1,3 +1,7 @@
+# Go ʕ◔ϖ◔ʔ
+export GOPATH=~/go
+export PATH=$GOPATH/bin:$PATH
+
 # Fix Java UI window parenting with AwesomeWM.
 #
 # see: http://awesome.naquadah.org/wiki/Problems_with_Java

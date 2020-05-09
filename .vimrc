@@ -33,7 +33,7 @@ set errorbells
 set colorcolumn=80,120
 
 " highlight trailing spaces
-set list listchars=trail:▒
+set list listchars=tab:\ \ ,trail:▒
 
 " disable arrow keys
 map <up> <nop>

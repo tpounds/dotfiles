@@ -1,5 +1,3 @@
-export PATH=~/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
-
 # Fix Java UI window parenting with AwesomeWM.
 #
 # see: http://awesome.naquadah.org/wiki/Problems_with_Java

@@ -47,6 +47,7 @@ setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
+setopt HIST_VERIFY
 
 # help guard against accidental rm -rf *
 setopt NO_RM_STAR_SILENT

@@ -32,6 +32,9 @@ set errorbells
 " highlight column widths
 set colorcolumn=80,120
 
+" highlight trailing spaces
+set list listchars=trail:▒
+
 " disable arrow keys
 map <up> <nop>
 map <down> <nop>

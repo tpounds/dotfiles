@@ -29,6 +29,9 @@ set smartcase
 set visualbell t_vb=
 set errorbells
 
+" highlight column widths
+set colorcolumn=80,120
+
 " disable arrow keys
 map <up> <nop>
 map <down> <nop>

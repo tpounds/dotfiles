@@ -1,17 +1,25 @@
 # Go ʕ◔ϖ◔ʔ
 export GOPATH=~/go
-export PATH=$GOPATH/bin:$PATH
 
 # Fix Java UI window parenting with AwesomeWM.
 #
 # see: http://awesome.naquadah.org/wiki/Problems_with_Java
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+typeset -U fpath # dedupe
 fpath=(
    ~/.zsh/completions
    ~/.zsh/functions
    $fpath
 )
+
+typeset -U path # dedupe
+path=(
+   ~/bin
+   $GOPATH/bin
+   $path
+)
+
 autoload -Uz compinit
 compinit
 

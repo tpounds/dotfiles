@@ -31,6 +31,10 @@ compinit
 autoload -U select-word-style
 select-word-style bash
 
+# disable stop/start terminal output
+stty stop  undef # ctrl+s
+stty start undef # ctrl+q
+
 bindkey -e # Emacs key bindings
 
 # configure prompt

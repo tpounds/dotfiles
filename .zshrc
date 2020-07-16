@@ -28,6 +28,9 @@ path=(
 autoload -Uz compinit
 compinit
 
+autoload -U select-word-style
+select-word-style bash
+
 bindkey -e # Emacs key bindings
 
 # configure prompt

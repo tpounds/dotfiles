@@ -17,7 +17,12 @@ typeset -U path # dedupe
 path=(
    ~/bin
    $GOPATH/bin
-   $path
+   /usr/local/sbin
+   /usr/local/bin
+   /usr/sbin
+   /usr/bin
+   /sbin
+   /bin
 )
 
 autoload -Uz compinit

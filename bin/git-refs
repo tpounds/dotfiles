@@ -1,12 +1,56 @@
 #!/bin/sh
 
+# Copyright (c) 2020 Trevor Pounds <trevor.pounds@gmail.com>
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+#
+# git-refs: print recent refs showing unmerged/ahead/behind commits and age
+#
+# master    509ee70642  🔃0   ⬆0  ⬇5   (9 minutes ago)
+# electric  83b181c68b  🔃39  ⬆0  ⬇0   (5 days ago)
+# boogaloo  1f8859c22c  🔃8   ⬆2  ⬇11  (4 months ago)
+#
+
+# TODO: sort options (e.g. date, commits)
+# TODO: diff --stat (e.g. --++)
+# TODO: commit sparkline (e.g. ▆█▇▅▂▁)
+# TODO: ref type filters (e.g. branch, tag)
+
 if [ -n "$1" ]; then
    refs=$1
 else
-   refs=$(git for-each-ref --format='%(refname:short)' refs/heads refs/tags)
+   refs=$(git for-each-ref --count=25 --format='%(refname:short)' --sort='-authordate' refs/heads refs/tags)
 fi
 
 for ref in $refs
 do
-   echo $(git log -1 --date=relative --pretty="format:%ct#$ref#%h#(%cd)" $ref)
-done | column -s'#' -t | sort -r -n | cut -d' ' -f3- | head -25
+   tracking=$(git rev-parse --abbrev-ref --symbolic-full-name "$ref@{upstream}" 2>/dev/null || true)
+   if [ -n "$tracking" ]; then
+      ahead=$(git log --oneline --pretty='%h' $tracking..$ref | wc -l)
+      behind=$(git log --oneline --pretty='%h' $ref..$tracking | wc -l)
+   else
+      ahead=0
+      behind=0
+   fi
+
+   mergebase=$(git merge-base master $ref)
+   unmerged=$(git log --oneline --pretty='%h' $mergebase..$ref | wc -l)
+   echo $(git log -1 --date=relative --pretty="format:$ref#%h#🔃$unmerged#⬆$ahead#⬇$behind#(%cd)" $ref)
+done | column -s'#' -t

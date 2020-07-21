@@ -1,0 +1,8 @@
+#!/bin/sh
+
+tracking=$(git rev-parse --abbrev-ref --symbolic-full-name "@{upstream}" 2>/dev/null || true)
+if [ -n "$tracking" ]; then
+   git log --oneline --pretty='%h' HEAD..$tracking | wc -l
+else
+   echo N/A - no tracking branch
+fi

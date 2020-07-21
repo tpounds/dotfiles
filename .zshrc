@@ -25,6 +25,9 @@ path=(
    /bin
 )
 
+autoload -Uz bashcompinit
+bashcompinit
+
 autoload -Uz compinit
 compinit
 

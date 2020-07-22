@@ -1,0 +1,11 @@
+# kind completions
+command -v kind >/dev/null 2>&1 && {
+   source <(kind completion zsh)
+   compdef _kind kind
+}
+
+# kubectl aliases/completions
+command -v kubectl >/dev/null 2>&1 && {
+   alias k='kubectl'
+   source <(kubectl completion zsh)
+}

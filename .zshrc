@@ -40,6 +40,8 @@ stty start undef # ctrl+q
 
 bindkey -e # Emacs key bindings
 
+source .zshrc.kubernetes
+
 # configure prompt
 autoload -Uz vcs_info
 setopt prompt_subst
@@ -93,18 +95,6 @@ if [ -x /usr/bin/dircolors ]; then
     #alias fgrep='fgrep --color=auto'
     #alias egrep='egrep --color=auto'
 fi
-
-# kind completions
-command -v kind >/dev/null 2>&1 && {
-   source <(kind completion zsh)
-   compdef _kind kind
-}
-
-# k8s aliases/completions
-command -v kubectl >/dev/null 2>&1 && {
-   alias k='kubectl'
-   source <(kubectl completion zsh)
-}
 
 # aws cli completions
 command -v aws_completer >/dev/null 2>&1 && {

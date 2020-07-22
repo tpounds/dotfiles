@@ -40,6 +40,7 @@ stty start undef # ctrl+q
 
 bindkey -e # Emacs key bindings
 
+source .zshrc.hashicorp
 source .zshrc.kubernetes
 
 # configure prompt
@@ -99,36 +100,6 @@ fi
 # aws cli completions
 command -v aws_completer >/dev/null 2>&1 && {
    complete -C aws_completer aws
-}
-
-# consul aliases/completions
-command -v consul >/dev/null 2>&1 && {
-   alias c='consul'
-   complete -o nospace -C consul consul
-}
-
-# nomad aliases/completions
-command -v nomad >/dev/null 2>&1 && {
-   alias n='nomad'
-   complete -o nospace -C nomad nomad
-}
-
-# packer aliases/completions
-command -v packer >/dev/null 2>&1 && {
-   alias p='packer'
-   complete -o nospace -C packer packer
-}
-
-# terraform aliases/completions
-command -v terraform >/dev/null 2>&1 && {
-   alias tf='terraform'
-   complete -o nospace -C terraform terraform
-}
-
-# vault aliases/completions
-command -v vault >/dev/null 2>&1 && {
-   alias v='vault'
-   complete -o nospace -C vault vault
 }
 
 # ls: colorize output

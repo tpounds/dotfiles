@@ -1,3 +1,8 @@
+# helm completions
+command -v helm >/dev/null 2>&1 && {
+   source <(helm completion zsh)
+}
+
 # kind completions
 command -v kind >/dev/null 2>&1 && {
    source <(kind completion zsh)

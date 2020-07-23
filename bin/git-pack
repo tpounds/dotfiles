@@ -1,0 +1,4 @@
+#!/bin/bash
+
+git gc --aggressive
+git pack -a -d

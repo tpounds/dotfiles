@@ -1,0 +1,6 @@
+#!/bin/bash
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+COMMIT=$(git rev-parse --short HEAD)
+
+git archive --format zip --output ${BRANCH}-${COMMIT}.zip ${COMMIT}

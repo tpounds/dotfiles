@@ -62,7 +62,7 @@ precmd() {
    esac
 }
 PROMPT='%F{green}%n%f@%F{cyan}%m%f:%F{yellow}%(5~|%-1~/.../%3~|%4~)%f$ '
-RPROMPT='$vcs_info_msg_0_'
+RPROMPT='$KUBEPS1 $vcs_info_msg_0_'
 
 # enable brace character class e.g. {a-z}
 setopt BRACE_CCL

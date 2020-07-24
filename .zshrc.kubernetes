@@ -14,3 +14,21 @@ command -v kubectl >/dev/null 2>&1 && {
    alias k='kubectl'
    source <(kubectl completion zsh)
 }
+
+# Create prompt with current kubectl context/namespace.
+precmd_kubeps1() {
+   KUBEPS1=$(kubectl config get-contexts 2>/dev/null | awk '
+      /^\*/ {
+         name=$2
+         cluster=$3
+         authinfo=$4
+         namespace=$5
+         if (length($5) == 0) {
+            namespace="default"
+         }
+         printf "%%B%%F{63}☸%%f%%b%%F{186}%s%%f:%%F{131}%s%%f", cluster, namespace
+      }
+   ')
+}
+precmd_functions=($precmd_functions precmd_kubeps1)
+

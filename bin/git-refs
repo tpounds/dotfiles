@@ -41,7 +41,7 @@ fi
 
 for ref in $refs
 do
-   tracking=$(git rev-parse --abbrev-ref --symbolic-full-name "$ref@{upstream}" 2>/dev/null || true)
+   tracking=$(git rev-parse --verify "$ref@{upstream}" 2>/dev/null || true)
    if [ -n "$tracking" ]; then
       ahead=$(git log --oneline --pretty='%h' $tracking..$ref | wc -l)
       behind=$(git log --oneline --pretty='%h' $ref..$tracking | wc -l)

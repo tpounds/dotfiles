@@ -43,14 +43,14 @@ for ref in $refs
 do
    tracking=$(git rev-parse --verify "$ref@{upstream}" 2>/dev/null || true)
    if [ -n "$tracking" ]; then
-      ahead=$(git log --oneline --pretty='%h' $tracking..$ref | wc -l)
-      behind=$(git log --oneline --pretty='%h' $ref..$tracking | wc -l)
+      ahead=$(git rev-list --count $tracking..$ref)
+      behind=$(git rev-list --count $ref..$tracking)
    else
       ahead=0
       behind=0
    fi
 
    mergebase=$(git merge-base master $ref)
-   unmerged=$(git log --oneline --pretty='%h' $mergebase..$ref | wc -l)
+   unmerged=$(git rev-list --count $mergebase..$ref)
    echo $(git log -1 --date=relative --pretty="format:$ref#%h#⇧$unmerged#⬆$ahead#⬇$behind#(%cd)" $ref)
 done | column -s'#' -t

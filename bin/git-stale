@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# git-stale: show branches that have NOT been updated recently (> 3 months old)
+#
+# electric  83b181c68b  (3 months ago)
+# boogaloo  1f8859c22c  (6 months ago)
+# two       46bbeff09a  (1 year, 2 months ago)
+
+if [ -n "$1" ]; then
+   refs=$1
+else
+   refs=$(git for-each-ref --format='%(refname:short)' --sort='-authordate' refs/heads)
+fi
+
+for ref in $refs
+do
+   recent=$(git rev-list --count --since='3 months ago' $ref)
+   if [ "$recent" -eq 0 ]; then
+     echo $(git log -1 --date=relative --pretty="format:$ref#%h#(%cd)" $ref)
+   fi
+done | column -s'#' -t

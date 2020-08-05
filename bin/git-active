@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# git-active: show branches that have been updated recently (< 3 months old)
+#
+# electric  83b181c68b  (2 days ago)
+# boogaloo  1f8859c22c  (3 weeks ago)
+# two       46bbeff09a  (2 months ago)
+
+if [ -n "$1" ]; then
+   refs=$1
+else
+   refs=$(git for-each-ref --format='%(refname:short)' --sort='-authordate' refs/heads)
+fi
+
+for ref in $refs
+do
+   recent=$(git rev-list --count --after='3 months ago' $ref)
+   if [ "$recent" -gt 0 ]; then
+     echo $(git log -1 --date=relative --pretty="format:$ref#%h#(%cd)" $ref)
+   fi
+done | column -s'#' -t

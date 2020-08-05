@@ -9,6 +9,11 @@ command -v kind >/dev/null 2>&1 && {
    compdef _kind kind
 }
 
+# kompose completions
+command -v kompose >/dev/null 2>&1 && {
+   source <(kompose completion zsh)
+}
+
 # kubectl aliases/completions
 command -v kubectl >/dev/null 2>&1 && {
    alias k='kubectl'

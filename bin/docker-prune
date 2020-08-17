@@ -1,0 +1,40 @@
+#!/bin/bash
+
+case "$1" in
+   all|"")
+      docker system prune --volumes
+      ;;
+   builds)
+      docker builder prune
+      ;;
+   containers)
+      docker container prune
+      ;;
+   images)
+      docker images prune
+      ;;
+   networks)
+      docker networks prune
+      ;;
+   volumes)
+      docker volume prune
+      ;;
+   help|*)
+      cat <<EOF
+Usage: docker-prune [COMMAND]
+
+Prune unused docker containers, images, and volumes.
+
+Commands:
+
+    all           prune all artifacts (default)
+    builds        prune build cache
+    containers    prune unused containers
+    images        prune unused images
+    networks      prune unused networks
+    volumes       prune unused volumes
+
+run 'docker-prune help' for more information on a command.
+EOF
+      ;;
+esac

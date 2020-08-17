@@ -1,0 +1,22 @@
+#compdef docker-prune docker-gc=docker-prune
+
+_docker-prune() {
+   local -a commands
+   commands=(
+         'all:pune all artifacts'
+         'builds:prune build cache'
+         'containers:prune unsed containers'
+         'help:show help'
+         'images:prune unused images'
+         'networks:prune unused networks'
+         'volumes:clean up volumes'
+   )
+
+   if (( CURRENT == 2 )); then
+      _describe -t commands 'commands' commands
+   fi
+
+   return 0
+}
+
+_docker-prune

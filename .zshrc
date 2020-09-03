@@ -40,8 +40,8 @@ stty start undef # ctrl+q
 
 bindkey -e # Emacs key bindings
 
-source .zshrc.hashicorp
-source .zshrc.kubernetes
+source ~/.zshrc.hashicorp
+source ~/.zshrc.kubernetes
 
 # configure prompt
 autoload -Uz vcs_info

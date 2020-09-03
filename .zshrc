@@ -113,8 +113,8 @@ alias l.='ls -d .*'
 alias less='less -i -r'
 
 # default to opening multiple files in tabs
-alias vi='/usr/bin/vi -p'
-alias vim='/usr/bin/vim -p'
+alias vi="$(whence -p vi) -p"
+alias vim="$(whence -p vim) -p"
 
 # source z
 source ~/.zsh/z/z.sh

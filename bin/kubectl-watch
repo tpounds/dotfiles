@@ -1,0 +1,3 @@
+#!/bin/bash
+
+watch -n 1 -t "kubectl get nodes --no-headers --sort-by .metadata.creationTimestamp; echo; kubectl get pods -A --no-headers --sort-by .metadata.creationTimestamp | tac"

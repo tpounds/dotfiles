@@ -39,6 +39,8 @@ else
    refs=$(git for-each-ref --count=25 --format='%(refname:short)' --sort='-authordate' refs/heads refs/tags)
 fi
 
+current="$(git rev-parse --abbrev-ref HEAD)"
+
 for ref in $refs
 do
    tracking=$(git rev-parse --verify "$ref@{upstream}" 2>/dev/null || true)
@@ -52,5 +54,11 @@ do
 
    mergebase=$(git merge-base master $ref)
    unmerged=$(git rev-list --count $mergebase..$ref)
-   echo $(git log -1 --date=relative --pretty="format:$ref#%h#⇧$unmerged#⬆$ahead#⬇$behind#(%cd)" $ref)
+
+   status=" "
+   if [ "$ref" = "$current" ]; then
+      status="*"
+   fi
+
+   echo $(git log -1 --date=relative --pretty="format:#$status#$ref#%h#⇧$unmerged#⬆$ahead#⬇$behind#(%cd)#" $ref)
 done | column -s'#' -t

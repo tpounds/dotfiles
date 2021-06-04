@@ -36,7 +36,7 @@
 if [ -n "$1" ]; then
    refs=$1
 else
-   refs=$(git for-each-ref --count=25 --format='%(refname:short)' --sort='-authordate' refs/heads refs/tags)
+   refs=$(git for-each-ref --count=25 --format='%(refname:short)' --sort='-authordate' refs/heads)
 fi
 
 current="$(git rev-parse --abbrev-ref HEAD)"

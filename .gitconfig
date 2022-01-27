@@ -27,6 +27,7 @@
    verbose = true
 [diff]
    algorithm = histogram
+   renameLimit = 10000
 [init]
    templatedir = ~/.git-template
 [log]

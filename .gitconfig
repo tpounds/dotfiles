@@ -25,6 +25,8 @@
    unmerged = branch --no-merged
 [commit]
    verbose = true
+[diff]
+   algorithm = histogram
 [init]
    templatedir = ~/.git-template
 [log]

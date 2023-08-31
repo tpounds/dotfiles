@@ -9,7 +9,7 @@ elif [ -e "$GIT_DIR/rebase-merge" ]; then
 elif [ -e "$GIT_DIR/MERGE_HEAD" ]; then
    git merge --continue
 elif [ -e "$GIT_DIR/CHERRY_PICK_HEAD" ]; then
-   git cherry-pick --abort
+   git cherry-pick --continue
 else
    echo "ERROR: Unknown state, nothing to continue."
    exit 1

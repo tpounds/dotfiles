@@ -36,4 +36,3 @@ precmd_kubeps1() {
    ')
 }
 precmd_functions=($precmd_functions precmd_kubeps1)
-
